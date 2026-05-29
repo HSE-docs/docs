@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hotels Document</title>
+    <style>
+        body { margin: 0; padding: 0; background-color: #525659; padding-bottom: 80px; font-family: sans-serif; }
+        .page-container { max-width: 800px; margin: 0 auto; }
+        
+        /* The images will fill the screen width */
+        .pdf-page { width: 100%; display: block; margin-bottom: 10px; box-shadow: 0 4px 6px rgba(0,0,0,0.3); }
+
+        /* Floating Action Panel */
+        .floating-action-panel { 
+            position: fixed; bottom: 0; left: 0; right: 0; 
+            background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(15px); 
+            padding: 10px; border-top: 1px solid #c6c6c8; z-index: 9999; 
+            display: flex; gap: 8px; justify-content: center; 
+        }
+        .action-btn { 
+            flex: 1; max-width: 120px; border: none; border-radius: 8px; 
+            padding: 12px; font-weight: 600; font-size: 13px; color: white; cursor: pointer; 
+        }
+        .btn-back { background-color: #8e8e93; }
+        .btn-print { background-color: #007aff; }
+    </style>
+</head>
+<body>
+
+    <div class="page-container">
+        <img src="page1.jpg" class="pdf-page" alt="Page 1" onerror="this.style.display='none'; this.nextSibling.style.display='block';">
+        <div style="display:none; color:white; padding:20px; border:1px solid red; text-align:center;">Could not find: page1.jpg</div>
+        
+        <img src="page2.jpg" class="pdf-page" alt="Page 2" onerror="this.style.display='none'; this.nextSibling.style.display='block';">
+        <div style="display:none; color:white; padding:20px; border:1px solid red; text-align:center;">Could not find: page2.jpg</div>
+        
+        <img src="page3.jpg" class="pdf-page" alt="Page 3" onerror="this.style.display='none'; this.nextSibling.style.display='block';">
+        <div style="display:none; color:white; padding:20px; border:1px solid red; text-align:center;">Could not find: page3.jpg</div>
+        
+        <img src="page4.jpg" class="pdf-page" alt="Page 4" onerror="this.style.display='none'; this.nextSibling.style.display='block';">
+        <div style="display:none; color:white; padding:20px; border:1px solid red; text-align:center;">Could not find: page4.jpg</div>
+    </div>
+
+    <div class="floating-action-panel">
+        <button type="button" class="action-btn btn-back" onclick="window.location.href='index.html'">Back</button>
+        <button type="button" class="action-btn btn-print" onclick="window.print()">Print</button>
+    </div>
+
+</body>
+</html>
