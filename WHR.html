@@ -2,12 +2,11 @@
 <html lang="en">
 <head>
     <style>
-        body { font-family: 'Arial', sans-serif; font-size: 10pt; width: 8.5in; margin: auto; padding: 20px; }
+        body { font-family: 'Arial', sans-serif; font-size: 10pt; width: 8.5in; margin: auto; padding: 20px; padding-bottom: 80px; }
         
         /* Updated header styles */
         .header-top { border-bottom: 2px solid black; padding-top: 40px; padding-bottom: 10px; margin-bottom: 20px; text-align: center; }
         .company-name { font-size: 22pt; font-weight: 800; margin-bottom: 2px; }
-        /* Adjusted margins to tighten the gap to the address */
         .company-division { font-size: 11.5pt; font-weight: normal; margin-bottom: 0px; }
         .company-details { font-weight: bold; font-size: 8.5pt; margin-top: 2px; }
         
@@ -25,20 +24,8 @@
         .line-wrapper { width: 100%; height: 100%; display: flex; align-items: flex-end; }
         .line-segment { height: 1px; background: black; }
         
-        .bottom-cell-wrapper { 
-            display: flex; 
-            justify-content: space-between; 
-            align-items: flex-end; 
-            width: 100%; 
-            height: 100%;
-        }
-        .bottom-cell { 
-            height: 22.95px; 
-            border: 1px solid black; 
-            border-top: none !important; 
-            padding: 0 5px; 
-            font-size: 9pt;
-        }
+        .bottom-cell-wrapper { display: flex; justify-content: space-between; align-items: flex-end; width: 100%; height: 100%; }
+        .bottom-cell { height: 22.95px; border: 1px solid black; border-top: none !important; padding: 0 5px; font-size: 9pt; }
 
         .total-row { height: 20px !important; }
         .total-row td { height: 20px !important; padding: 2px !important; }
@@ -55,6 +42,16 @@
 
         .form-info { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 15px; }
         .form-info div { border-bottom: 1px solid black; flex: 1 1 30%; }
+        
+        /* Floating Panel Styles */
+        .floating-action-panel { position: fixed; bottom: 0; left: 0; right: 0; background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(15px); padding: 10px; border-top: 1px solid #c6c6c8; z-index: 9999; display: flex; gap: 8px; justify-content: center; }
+        .action-btn { flex: 1; max-width: 120px; border: none; border-radius: 8px; padding: 12px; font-weight: 600; font-size: 13px; color: white; cursor: pointer; }
+        .btn-print { background-color: #007aff; }
+        .btn-clear { background-color: #ff3b30; }
+        .btn-back { background-color: #8e8e93; }
+        .btn-share { background-color: #5856d6; }
+
+        @media print { .floating-action-panel { display: none !important; } }
     </style>
 </head>
 <body>
@@ -70,8 +67,12 @@
     </div>
 
     <div class="form-info">
-        <div>Date: </div><div>Job #: </div><div>Contract #: </div>
-        <div>Weather: </div><div>Contractor: </div><div>Location: </div>
+        <div>Date: <input type="text" style="border:none; width:80%;"></div>
+        <div>Job #: <input type="text" style="border:none; width:80%;"></div>
+        <div>Contract #: <input type="text" style="border:none; width:80%;"></div>
+        <div>Weather: <input type="text" style="border:none; width:80%;"></div>
+        <div>Contractor: <input type="text" style="border:none; width:80%;"></div>
+        <div>Location: <input type="text" style="border:none; width:80%;"></div>
     </div>
 
     <div>Work Description: __________________________________________________________________________</div>
@@ -90,13 +91,13 @@
             </tr>
         </thead>
         <tbody>
-            <tr><td><div class="sta-to-container"><span class="sta-text">Sta</span><span class="to-text">to</span></div></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
-            <tr><td><div class="sta-to-container"><span class="sta-text">Sta</span><span class="to-text">to</span></div></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
-            <tr><td><div class="sta-to-container"><span class="sta-text">Sta</span><span class="to-text">to</span></div></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
-            <tr><td><div class="sta-to-container"><span class="sta-text">Sta</span><span class="to-text">to</span></div></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
-            <tr><td><div class="sta-to-container"><span class="sta-text">Sta</span><span class="to-text">to</span></div></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
-            <tr><td><div class="sta-to-container"><span class="sta-text">Sta</span><span class="to-text">to</span></div></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
-            <tr><td><div class="sta-to-container"><span class="sta-text">Sta</span><span class="to-text">to</span></div></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+            <tr><td><input type="text" style="border:none; width:100%;"></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+            <tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+            <tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+            <tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+            <tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+            <tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+            <tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
             <tr class="total-row"><td colspan="3" class="total-label">Total M2:</td><td colspan="4"></td><td></td></tr>
         </tbody>
     </table>
@@ -176,6 +177,36 @@
             </tr>
         </tfoot>
     </table>
+
+    <div class="floating-action-panel">
+        <button type="button" class="action-btn btn-back" onclick="window.location.href='index.html'">Back</button>
+        <button type="button" class="action-btn btn-clear" onclick="clearAllData()">Clear</button>
+        <button type="button" class="action-btn btn-print" onclick="window.print()">Print</button>
+        <button type="button" class="action-btn btn-share" onclick="shareForm()">Share</button>
+    </div>
+
+    <script>
+        function clearAllData() {
+            if(confirm("Are you sure you want to clear this report?")) {
+                document.querySelectorAll('input, textarea').forEach(el => {
+                    if(el.type !== 'button') el.value = '';
+                    if(el.type === 'checkbox') el.checked = false;
+                });
+            }
+        }
+
+        function shareForm() {
+            if (navigator.share) {
+                navigator.share({
+                    title: document.title,
+                    text: 'Work History Report',
+                    url: window.location.href
+                }).catch(console.error);
+            } else {
+                alert("Sharing not supported on this device. Use Print to Save as PDF.");
+            }
+        }
+    </script>
 
 </body>
 </html>
