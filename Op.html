@@ -3,7 +3,7 @@
 <head>
     <style>
         /* ORIGINAL DESIGN - FULL SIZE FOR SCREEN */
-        body { font-family: sans-serif; font-size: 11pt; margin: 0; padding: 20px; line-height: 1.2; color: #000; }
+        body { font-family: sans-serif; font-size: 11pt; margin: 0; padding: 20px; line-height: 1.2; color: #000; padding-bottom: 80px; }
         .container { max-width: 800px; margin: auto; padding: 10px; }
 
         h2 { text-align: center; text-decoration: underline; font-size: 16pt; margin-bottom: 20px; }
@@ -22,15 +22,18 @@
         .footer { text-align: center; margin-top: 25px; font-size: 9pt; color: #555; }
         .comment-line { border-bottom: 1px solid #000; height: 18px; margin-top: 8px; }
         
-        .button-background { position: fixed; bottom: 0; left: 0; width: 100%; background-color: white; padding: 15px 0; border-top: 1px solid #ccc; z-index: 999; }
-        .print-btn { width: 90%; margin: 0 auto; display: block; padding: 18px; font-size: 20px; font-weight: 600; cursor: pointer; background-color: #007bff; color: white; border: none; border-radius: 12px; }
+        /* Floating Panel Styles */
+        .floating-action-panel { position: fixed; bottom: 0; left: 0; right: 0; background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(15px); padding: 10px; border-top: 1px solid #c6c6c8; z-index: 9999; display: flex; gap: 8px; justify-content: center; }
+        .action-btn { flex: 1; max-width: 120px; border: none; border-radius: 8px; padding: 12px; font-weight: 600; font-size: 13px; color: white; cursor: pointer; }
+        .btn-print { background-color: #007aff; }
+        .btn-clear { background-color: #ff3b30; }
+        .btn-back { background-color: #8e8e93; }
+        .btn-share { background-color: #5856d6; }
 
-        /* PRINT SETTINGS - COMPACT VERSION */
+        /* PRINT SETTINGS */
         @media print {
-            .button-background { display: none; }
+            .floating-action-panel { display: none !important; }
             @page { size: A4; margin: 5mm; }
-            
-            /* Aggressively compact everything for print */
             body { font-size: 8.5pt; }
             h2 { font-size: 13pt; margin-bottom: 5px; }
             h3 { font-size: 10pt; margin: 5px 0 2px 0; }
@@ -42,9 +45,6 @@
     </style>
 </head>
 <body>
-    <div class="button-background">
-        <button class="print-btn" onclick="window.print()">Generate PDF</button>
-    </div>
 
     <div class="container">
         <h2>OPERATIONS - DAILY PRODUCTION REPORT</h2>
@@ -72,13 +72,13 @@
 
         <table>
             <tr><th style="width: 15%;">DOWNTIME</th><th style="width: 45%;">REASON</th><th style="width: 20%;">START TIME</th><th style="width: 20%;">STOP TIME</th></tr>
-            <tr><td>1</td><td></td><td></td><td></td></tr>
-            <tr><td>2</td><td></td><td></td><td></td></tr>
-            <tr><td>3</td><td></td><td></td><td></td></tr>
-            <tr><td>4</td><td></td><td></td><td></td></tr>
-            <tr><td>5</td><td></td><td></td><td></td></tr>
-            <tr><td>6</td><td></td><td></td><td></td></tr>
-            <tr><td>7</td><td></td><td></td><td></td></tr>
+            <tr><td>1</td><td><input type="text" style="width:95%"></td><td><input type="text" style="width:90%"></td><td><input type="text" style="width:90%"></td></tr>
+            <tr><td>2</td><td><input type="text" style="width:95%"></td><td><input type="text" style="width:90%"></td><td><input type="text" style="width:90%"></td></tr>
+            <tr><td>3</td><td><input type="text" style="width:95%"></td><td><input type="text" style="width:90%"></td><td><input type="text" style="width:90%"></td></tr>
+            <tr><td>4</td><td><input type="text" style="width:95%"></td><td><input type="text" style="width:90%"></td><td><input type="text" style="width:90%"></td></tr>
+            <tr><td>5</td><td><input type="text" style="width:95%"></td><td><input type="text" style="width:90%"></td><td><input type="text" style="width:90%"></td></tr>
+            <tr><td>6</td><td><input type="text" style="width:95%"></td><td><input type="text" style="width:90%"></td><td><input type="text" style="width:90%"></td></tr>
+            <tr><td>7</td><td><input type="text" style="width:95%"></td><td><input type="text" style="width:90%"></td><td><input type="text" style="width:90%"></td></tr>
         </table>
 
         <h3>DAILY WASTE</h3>
@@ -106,12 +106,41 @@
         </div>
 
         <h3>COMMENTS:</h3>
-        <div class="comment-line"></div>
-        <div class="comment-line"></div>
-        <div class="comment-line"></div>
-        <div class="comment-line"></div>
+        <div class="comment-line"><input type="text" style="width:100%; border:none;"></div>
+        <div class="comment-line"><input type="text" style="width:100%; border:none;"></div>
+        <div class="comment-line"><input type="text" style="width:100%; border:none;"></div>
+        <div class="comment-line"><input type="text" style="width:100%; border:none;"></div>
 
         <div class="footer">C2 - COLAS GROUP INTERNAL: Employees and partners who need to know.</div>
     </div>
+
+    <div class="floating-action-panel">
+        <button type="button" class="action-btn btn-back" onclick="window.location.href='index.html'">Back</button>
+        <button type="button" class="action-btn btn-clear" onclick="clearAllData()">Clear</button>
+        <button type="button" class="action-btn btn-print" onclick="window.print()">Print</button>
+        <button type="button" class="action-btn btn-share" onclick="shareForm()">Share</button>
+    </div>
+
+    <script>
+        function clearAllData() {
+            if(confirm("Are you sure you want to clear this report?")) {
+                document.querySelectorAll('input, textarea').forEach(el => {
+                    if(el.type !== 'button') el.value = '';
+                });
+            }
+        }
+
+        function shareForm() {
+            if (navigator.share) {
+                navigator.share({
+                    title: document.title,
+                    text: 'Operations - Daily Production Report',
+                    url: window.location.href
+                }).catch(console.error);
+            } else {
+                alert("Sharing not supported on this device. Use Print to Save as PDF.");
+            }
+        }
+    </script>
 </body>
 </html>
