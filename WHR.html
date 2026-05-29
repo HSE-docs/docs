@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <style>
+        body { font-family: 'Arial', sans-serif; font-size: 10pt; width: 8.5in; margin: auto; padding: 20px; }
+        
+        /* Updated header styles */
+        .header-top { border-bottom: 2px solid black; padding-top: 40px; padding-bottom: 10px; margin-bottom: 20px; text-align: center; }
+        .company-name { font-size: 22pt; font-weight: 800; margin-bottom: 2px; }
+        /* Adjusted margins to tighten the gap to the address */
+        .company-division { font-size: 11.5pt; font-weight: normal; margin-bottom: 0px; }
+        .company-details { font-weight: bold; font-size: 8.5pt; margin-top: 2px; }
+        
+        .footer-title { text-align: center; font-weight: bold; font-size: 14pt; padding-top: 20px; }
+        
+        table { width: 100%; border-collapse: collapse; margin-bottom: 0px; table-layout: fixed; }
+        
+        td { border: 1px solid black; padding: 2px; height: 25.5px; overflow: hidden; }
+        th { border: 1px solid black; padding: 2px; height: 15px; vertical-align: middle; text-align: center; font-weight: bold; font-size: 9pt; }
+        
+        .remarks-footer { text-align: center; font-weight: bold; height: 15px; vertical-align: middle; padding: 0px; font-size: 9pt; }
+        .tall-bottom-cell { height: 102px; border-bottom: none; } 
+        
+        .middle-cell { height: 25.5px; padding: 0 !important; border-left: 1px solid black; border-right: 1px solid black; border-bottom: none; }
+        .line-wrapper { width: 100%; height: 100%; display: flex; align-items: flex-end; }
+        .line-segment { height: 1px; background: black; }
+        
+        .bottom-cell-wrapper { 
+            display: flex; 
+            justify-content: space-between; 
+            align-items: flex-end; 
+            width: 100%; 
+            height: 100%;
+        }
+        .bottom-cell { 
+            height: 22.95px; 
+            border: 1px solid black; 
+            border-top: none !important; 
+            padding: 0 5px; 
+            font-size: 9pt;
+        }
+
+        .total-row { height: 20px !important; }
+        .total-row td { height: 20px !important; padding: 2px !important; }
+        
+        .large-col { width: 29.375%; }
+        .med-small-col { width: 7.5%; }
+        .very-small-col { width: 5.625%; }
+        
+        .sta-to-container { display: flex; height: 100%; align-items: flex-end; position: relative; }
+        .sta-text { text-align: left; margin-right: auto; }
+        .to-text { flex-grow: 1; display: flex; justify-content: center; }
+        
+        .total-label { text-align: right; font-weight: bold; vertical-align: middle; }
+
+        .form-info { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 15px; }
+        .form-info div { border-bottom: 1px solid black; flex: 1 1 30%; }
+    </style>
+</head>
+<body>
+
+    <div class="header-top">
+        <div class="company-name">Miller Paving LTD</div>
+        <div class="company-division">a division of Miller Group Inc.</div>
+        <div class="company-details">
+            2276 Route 128 Hwy, Berry Mills, NB E1G 4K4<br>
+            Tel.: (506) 857-0112<br>
+            Fax: (506) 867-0490
+        </div>
+    </div>
+
+    <div class="form-info">
+        <div>Date: </div><div>Job #: </div><div>Contract #: </div>
+        <div>Weather: </div><div>Contractor: </div><div>Location: </div>
+    </div>
+
+    <div>Work Description: __________________________________________________________________________</div>
+
+    <table>
+        <thead>
+            <tr>
+                <th class="large-col">Length</th>
+                <th class="med-small-col">Meters</th>
+                <th class="med-small-col">Width</th>
+                <th class="med-small-col">M2</th>
+                <th class="very-small-col">Depth</th>
+                <th class="med-small-col">Mainlane</th>
+                <th class="very-small-col">Ramp</th>
+                <th class="large-col">Comments</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr><td><div class="sta-to-container"><span class="sta-text">Sta</span><span class="to-text">to</span></div></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+            <tr><td><div class="sta-to-container"><span class="sta-text">Sta</span><span class="to-text">to</span></div></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+            <tr><td><div class="sta-to-container"><span class="sta-text">Sta</span><span class="to-text">to</span></div></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+            <tr><td><div class="sta-to-container"><span class="sta-text">Sta</span><span class="to-text">to</span></div></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+            <tr><td><div class="sta-to-container"><span class="sta-text">Sta</span><span class="to-text">to</span></div></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+            <tr><td><div class="sta-to-container"><span class="sta-text">Sta</span><span class="to-text">to</span></div></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+            <tr><td><div class="sta-to-container"><span class="sta-text">Sta</span><span class="to-text">to</span></div></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+            <tr class="total-row"><td colspan="3" class="total-label">Total M2:</td><td colspan="4"></td><td></td></tr>
+        </tbody>
+    </table>
+
+    <table>
+        <thead>
+            <tr>
+                <th class="large-col">Employee Name</th>
+                <th class="med-small-col">Working</th>
+                <th class="med-small-col">Standby</th>
+                <th class="med-small-col">Travel</th>
+                <th class="very-small-col">Total</th>
+                <th class="med-small-col"></th>
+                <th class="very-small-col"></th>
+                <th class="large-col">Remarks</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+            <tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+            <tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+            <tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+            <tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+            <tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+            <tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+            <tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+        </tbody>
+    </table>
+
+    <table>
+        <thead>
+            <tr>
+                <th class="large-col" style="text-align: left;">Unit # &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Description</th>
+                <th class="med-small-col">Working</th>
+                <th class="med-small-col">Standby</th>
+                <th class="med-small-col">Travel</th>
+                <th class="very-small-col">Total</th>
+                <th class="med-small-col"></th>
+                <th class="very-small-col"></th>
+                <th class="large-col">Remarks</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+            <tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+            <tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+            <tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+            <tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+            <tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+            <tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+            <tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+        </tbody>
+        <tfoot>
+            <tr><td colspan="8" class="remarks-footer">REMARKS</td></tr>
+            <tr><td colspan="8" class="tall-bottom-cell"></td></tr>
+            <tr>
+                <td colspan="8" class="middle-cell">
+                    <div class="line-wrapper">
+                        <div class="line-segment" style="width: 25%;"></div>
+                        <div style="flex-grow: 1;"></div>
+                        <div class="line-segment" style="width: 25%;"></div>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="8" class="bottom-cell">
+                    <div class="bottom-cell-wrapper">
+                        <span>Company Representative</span>
+                        <span>Contract/Engineer Representative</span>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="8" style="border: none;">
+                    <div class="footer-title">WORK HISTORY REPORT</div>
+                </td>
+            </tr>
+        </tfoot>
+    </table>
+
+</body>
+</html>
