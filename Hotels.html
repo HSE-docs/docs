@@ -7,7 +7,14 @@
     <style>
         body { margin: 0; padding: 0; background-color: #525659; padding-bottom: 80px; }
         .page-container { max-width: 800px; margin: 0 auto; }
-        .pdf-page { width: 100%; display: block; margin-bottom: 10px; box-shadow: 0 4px 6px rgba(0,0,0,0.3); }
+        
+        .pdf-page { 
+            width: 100%; 
+            height: auto; 
+            display: block; 
+            margin-bottom: 10px; 
+            box-shadow: 0 4px 6px rgba(0,0,0,0.3); 
+        }
 
         .floating-action-panel { 
             position: fixed; bottom: 0; left: 0; right: 0; 
@@ -15,27 +22,50 @@
             padding: 10px; border-top: 1px solid #c6c6c8; z-index: 9999; 
             display: flex; gap: 8px; justify-content: center; 
         }
+        
         .action-btn { 
             flex: 1; max-width: 120px; border: none; border-radius: 8px; 
             padding: 12px; font-weight: 600; font-size: 13px; color: white; cursor: pointer; 
         }
         .btn-back { background-color: #8e8e93; }
         .btn-print { background-color: #007aff; }
+        .btn-share { background-color: #af52de; } /* Changed to Purple */
+
+        @media print {
+            .floating-action-panel { display: none !important; }
+            body { background-color: white; padding-bottom: 0; }
+        }
     </style>
 </head>
 <body>
 
     <div class="page-container">
-        <img src="Images/page1.jpg" class="pdf-page" alt="Page 1">
-        <img src="Images/page2.jpg" class="pdf-page" alt="Page 2">
-        <img src="Images/page3.jpg" class="pdf-page" alt="Page 3">
-        <img src="Images/page4.jpg" class="pdf-page" alt="Page 4">
+        <img src="Images/page1.jpg" class="pdf-page" alt="Page 1" loading="lazy">
+        <img src="Images/page2.jpg" class="pdf-page" alt="Page 2" loading="lazy">
+        <img src="Images/page3.jpg" class="pdf-page" alt="Page 3" loading="lazy">
+        <img src="Images/page4.jpg" class="pdf-page" alt="Page 4" loading="lazy">
     </div>
 
     <div class="floating-action-panel">
         <button type="button" class="action-btn btn-back" onclick="window.location.href='index.html'">Back</button>
         <button type="button" class="action-btn btn-print" onclick="window.print()">Print</button>
+        <button type="button" class="action-btn btn-share" onclick="sharePage()">Share</button>
     </div>
+
+    <script>
+        function sharePage() {
+            if (navigator.share) {
+                navigator.share({
+                    title: document.title,
+                    text: 'Check out this document',
+                    url: window.location.href
+                })
+                .catch((error) => console.log('Error sharing:', error));
+            } else {
+                alert('Sharing is not supported on this browser.');
+            }
+        }
+    </script>
 
 </body>
 </html>
