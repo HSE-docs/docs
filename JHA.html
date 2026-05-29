@@ -99,7 +99,7 @@
 <body>
 
 <div class="app-container">
-    <div class="document-canvas" id="pdfDocument">
+    <form id="hazardForm" class="document-canvas">
         
         <div class="doc-header">
             <div class="logo-container">
@@ -110,57 +110,57 @@
 
         <div class="header-border-group">
             <div class="type-selector-row">
-                <div class="type-item"><input type="checkbox" id="preHazard"> <span class="red-text">Pre-Hazard Assessment</span> </div>
-                <div class="type-item"><input type="checkbox" id="dailyInspect"> <span class="red-text">Daily Inspection</span> </div>
+                <div class="type-item"><input type="checkbox" name="preHazard" id="preHazard"> <span class="red-text">Pre-Hazard Assessment</span> </div>
+                <div class="type-item"><input type="checkbox" name="dailyInspect" id="dailyInspect"> <span class="red-text">Daily Inspection</span> </div>
             </div>
         </div>
 
         <table class="grid-table">
             <tr>
                 <td style="width: 15%; font-weight: bold;">Company Name:</td> 
-                <td style="width: 35%;"><input type="text"></td>
+                <td style="width: 35%;"><input type="text" name="companyName"></td>
                 <td style="width: 12%; font-weight: bold;">Location:</td> 
-                <td style="width: 38%;"><input type="text" placeholder="Highway #, Rte #, Mile Marker, Road, Street, Closest Civic address, etc."> </td>
+                <td style="width: 38%;"><input type="text" name="location" placeholder="Highway #, Rte #, Mile Marker, Road, Street, Closest Civic address, etc."> </td>
             </tr>
             <tr>
-                <td style="font-weight: bold;">Foreman:</td> <td><input type="text"></td>
-                <td style="font-weight: bold;">Safety Rep:</td> <td><input type="text"></td>
+                <td style="font-weight: bold;">Foreman:</td> <td><input type="text" name="foreman"></td>
+                <td style="font-weight: bold;">Safety Rep:</td> <td><input type="text" name="safetyRep"></td>
             </tr>
         </table>
 
         <div class="section-banner red-text">Pre-Start Checklist</div> 
         <table class="grid-table">
             <tr>
-                <td style="width: 50%; font-size: 10px; vertical-align: middle;"><strong class="red-text">Completed By:</strong> <input type="text" class="perfect-input" style="width:60%; display:inline-block;"></td> 
-                <td style="width: 50%; font-size: 10px; vertical-align: middle;"><strong class="red-text">Date:</strong> <input type="date" class="perfect-input" style="width:75%; display:inline-block;"></td> 
+                <td style="width: 50%; font-size: 10px; vertical-align: middle;"><strong class="red-text">Completed By:</strong> <input type="text" name="preStartBy" class="perfect-input" style="width:60%; display:inline-block;"></td> 
+                <td style="width: 50%; font-size: 10px; vertical-align: middle;"><strong class="red-text">Date:</strong> <input type="date" name="preStartDate" class="perfect-input" style="width:75%; display:inline-block;"></td> 
             </tr>
         </table>
 
         <table class="grid-table" style="margin-top: -11px;">
             <tr>
-                <td style="width: 33%; padding: 1px 2px;"><div class="check-cell-content"><input type="checkbox" style="width:10px; height:10px;"><span class="check-label" style="font-size: 8px;">Traffic Control</span></div> </td>
-                <td style="width: 33%; padding: 1px 2px;"><div class="check-cell-content"><input type="checkbox" style="width:10px; height:10px;"><span class="check-label" style="font-size: 8px;">Sub-Contractor</span></div> </td>
-                <td style="width: 33%; padding: 1px 2px;"><div class="check-cell-content"><input type="checkbox" style="width:10px; height:10px;"><span class="check-label" style="font-size: 8px;">PPE Reqs</span></div> </td>
+                <td style="width: 33%; padding: 1px 2px;"><div class="check-cell-content"><input type="checkbox" name="trafficControl" style="width:10px; height:10px;"><span class="check-label" style="font-size: 8px;">Traffic Control</span></div> </td>
+                <td style="width: 33%; padding: 1px 2px;"><div class="check-cell-content"><input type="checkbox" name="subContractor" style="width:10px; height:10px;"><span class="check-label" style="font-size: 8px;">Sub-Contractor</span></div> </td>
+                <td style="width: 33%; padding: 1px 2px;"><div class="check-cell-content"><input type="checkbox" name="ppeReqs" style="width:10px; height:10px;"><span class="check-label" style="font-size: 8px;">PPE Reqs</span></div> </td>
             </tr>
             <tr>
-                <td style="padding: 1px 2px;"><div class="check-cell-content"><input type="checkbox" style="width:10px; height:10px;"><span class="check-label" style="font-size: 8px;">Revolving lights</span></div> </td>
-                <td style="padding: 1px 2px;"><div class="check-cell-content"><input type="checkbox" style="width:10px; height:10px;"><span class="check-label" style="font-size: 8px;">Black Bag</span></div> </td>
-                <td style="padding: 1px 2px;"><div class="check-cell-content"><input type="checkbox" style="width:10px; height:10px;"><span class="check-label" style="font-size: 8px;">Overhead Wires</span></div> </td>
+                <td style="padding: 1px 2px;"><div class="check-cell-content"><input type="checkbox" name="revolvingLights" style="width:10px; height:10px;"><span class="check-label" style="font-size: 8px;">Revolving lights</span></div> </td>
+                <td style="padding: 1px 2px;"><div class="check-cell-content"><input type="checkbox" name="blackBag" style="width:10px; height:10px;"><span class="check-label" style="font-size: 8px;">Black Bag</span></div> </td>
+                <td style="padding: 1px 2px;"><div class="check-cell-content"><input type="checkbox" name="overheadWires" style="width:10px; height:10px;"><span class="check-label" style="font-size: 8px;">Overhead Wires</span></div> </td>
             </tr>
             <tr>
-                <td style="padding: 1px 2px;"><div class="check-cell-content"><input type="checkbox" style="width:10px; height:10px;"><span class="check-label" style="font-size: 8px;">SDS Sheets</span></div> </td>
-                <td style="padding: 1px 2px;"><div class="check-cell-content"><input type="checkbox" style="width:10px; height:10px;"><span class="check-label" style="font-size: 8px;">Comm. Device</span></div> </td>
-                <td style="padding: 1px 2px;"><div class="check-cell-content"><input type="checkbox" style="width:10px; height:10px;"><span class="check-label" style="font-size: 8px;">Water Course</span></div> </td>
+                <td style="padding: 1px 2px;"><div class="check-cell-content"><input type="checkbox" name="sdsSheets" style="width:10px; height:10px;"><span class="check-label" style="font-size: 8px;">SDS Sheets</span></div> </td>
+                <td style="padding: 1px 2px;"><div class="check-cell-content"><input type="checkbox" name="commDevice" style="width:10px; height:10px;"><span class="check-label" style="font-size: 8px;">Comm. Device</span></div> </td>
+                <td style="padding: 1px 2px;"><div class="check-cell-content"><input type="checkbox" name="waterCourse" style="width:10px; height:10px;"><span class="check-label" style="font-size: 8px;">Water Course</span></div> </td>
             </tr>
             <tr>
-                <td style="padding: 1px 2px;"><div class="check-cell-content"><input type="checkbox" style="width:10px; height:10px;"><span class="check-label" style="font-size: 8px;">Fire Ext.</span></div> </td>
-                <td style="padding: 1px 2px;"><div class="check-cell-content"><input type="checkbox" style="width:10px; height:10px;"><span class="check-label" style="font-size: 8px;">First Aid</span></div> </td>
-                <td style="padding: 1px 2px;"><div class="check-cell-content"><input type="checkbox" style="width:10px; height:10px;"><span class="check-label" style="font-size: 8px;">SWP/SJP</span></div> </td>
+                <td style="padding: 1px 2px;"><div class="check-cell-content"><input type="checkbox" name="fireExt" style="width:10px; height:10px;"><span class="check-label" style="font-size: 8px;">Fire Ext.</span></div> </td>
+                <td style="padding: 1px 2px;"><div class="check-cell-content"><input type="checkbox" name="firstAid" style="width:10px; height:10px;"><span class="check-label" style="font-size: 8px;">First Aid</span></div> </td>
+                <td style="padding: 1px 2px;"><div class="check-cell-content"><input type="checkbox" name="swpSjp" style="width:10px; height:10px;"><span class="check-label" style="font-size: 8px;">SWP/SJP</span></div> </td>
             </tr>
             <tr>
-                <td style="padding: 1px 2px;"><div class="check-cell-content"><input type="checkbox" style="width:10px; height:10px;"><span class="check-label" style="font-size: 8px;">Sanitation</span></div> </td>
-                <td style="padding: 1px 2px;"><div class="check-cell-content"><input type="checkbox" style="width:10px; height:10px;"><span class="check-label" style="font-size: 8px;">Permits</span></div> </td>
-                <td style="padding: 1px 2px;"><div class="check-cell-content" style="gap:4px;"><span class="check-label" style="font-size: 8px;"><strong>Other:</strong></span> <input type="text" style="padding: 2px;"></div> </td>
+                <td style="padding: 1px 2px;"><div class="check-cell-content"><input type="checkbox" name="sanitation" style="width:10px; height:10px;"><span class="check-label" style="font-size: 8px;">Sanitation</span></div> </td>
+                <td style="padding: 1px 2px;"><div class="check-cell-content"><input type="checkbox" name="permits" style="width:10px; height:10px;"><span class="check-label" style="font-size: 8px;">Permits</span></div> </td>
+                <td style="padding: 1px 2px;"><div class="check-cell-content" style="gap:4px;"><span class="check-label" style="font-size: 8px;"><strong>Other:</strong></span> <input type="text" name="otherCheck" style="padding: 2px;"></div> </td>
             </tr>
             <tr>
                 <td colspan="3" style="text-align: center; font-style: italic; font-size: 10px; padding: 4px;"><span class="red-text">Note: If any items are missing, correct prior to startup.</span> </td>
@@ -170,8 +170,8 @@
         <div class="section-banner red-text">Hazard/Inspection Checklist</div> 
         <table class="grid-table">
             <tr>
-                <td style="width: 50%; font-size: 10px; vertical-align: middle;"><strong class="red-text">Completed By:</strong> <input type="text" class="perfect-input" style="width:60%; display:inline-block;"></td> 
-                <td style="width: 50%; font-size: 10px; vertical-align: middle;"><strong class="red-text">Date:</strong> <input type="date" class="perfect-input" style="width:75%; display:inline-block;"></td> 
+                <td style="width: 50%; font-size: 10px; vertical-align: middle;"><strong class="red-text">Completed By:</strong> <input type="text" name="hzCompletedBy" class="perfect-input" style="width:60%; display:inline-block;"></td> 
+                <td style="width: 50%; font-size: 10px; vertical-align: middle;"><strong class="red-text">Date:</strong> <input type="date" name="hzDate" class="perfect-input" style="width:75%; display:inline-block;"></td> 
             </tr>
         </table>
 
@@ -182,19 +182,17 @@
                 </tr>
             </thead>
             <tbody>
-                <tr><td><input type="checkbox" class="hz-check"></td><td><input type="checkbox" class="hz-check"></td><td>Emerg. Resp</td> <td><input type="checkbox" class="hz-check"></td><td><input type="checkbox" class="hz-check"></td><td>Guards</td> <td><input type="checkbox" class="hz-check"></td><td><input type="checkbox" class="hz-check"></td><td>PPE</td></tr>
-                <tr><td><input type="checkbox" class="hz-check"></td><td><input type="checkbox" class="hz-check"></td><td>Lockout</td> <td><input type="checkbox" class="hz-check"></td><td><input type="checkbox" class="hz-check"></td><td>Tools</td> <td><input type="checkbox" class="hz-check"></td><td><input type="checkbox" class="hz-check"></td><td>Alarms</td></tr>
-                <tr><td><input type="checkbox" class="hz-check"></td><td><input type="checkbox" class="hz-check"></td><td>Haz. Storage</td> <td><input type="checkbox" class="hz-check"></td><td><input type="checkbox" class="hz-check"></td><td>Power Lines</td> <td><input type="checkbox" class="hz-check"></td><td><input type="checkbox" class="hz-check"></td><td>Fire Ext.</td></tr>
-                <tr><td><input type="checkbox" class="hz-check"></td><td><input type="checkbox" class="hz-check"></td><td>Housekeep.</td> <td><input type="checkbox" class="hz-check"></td><td><input type="checkbox" class="hz-check"></td><td>Access</td> <td><input type="checkbox" class="hz-check"></td><td><input type="checkbox" class="hz-check"></td><td>Ladders</td></tr>
-                <tr><td><input type="checkbox" class="hz-check"></td><td><input type="checkbox" class="hz-check"></td><td>Heavy Equip</td> <td><input type="checkbox" class="hz-check"></td><td><input type="checkbox" class="hz-check"></td><td>Manual Hand</td> <td><input type="checkbox" class="hz-check"></td><td><input type="checkbox" class="hz-check"></td><td>Noise</td></tr>
-                <tr><td><input type="checkbox" class="hz-check"></td><td><input type="checkbox" class="hz-check"></td><td>Traffic Cntrl</td> <td><input type="checkbox" class="hz-check"></td><td><input type="checkbox" class="hz-check"></td><td>Grounds</td> <td><input type="checkbox" class="hz-check"></td><td><input type="checkbox" class="hz-check"></td><td>Other</td></tr>
+                <tr><td><input type="checkbox" name="emer_ok" class="hz-check"></td><td><input type="checkbox" name="emer_fix" class="hz-check"></td><td>Emerg. Resp</td> <td><input type="checkbox" name="guards_ok" class="hz-check"></td><td><input type="checkbox" name="guards_fix" class="hz-check"></td><td>Guards</td> <td><input type="checkbox" name="ppe_ok" class="hz-check"></td><td><input type="checkbox" name="ppe_fix" class="hz-check"></td><td>PPE</td></tr>
+                <tr><td><input type="checkbox" name="lockout_ok" class="hz-check"></td><td><input type="checkbox" name="lockout_fix" class="hz-check"></td><td>Lockout</td> <td><input type="checkbox" name="tools_ok" class="hz-check"></td><td><input type="checkbox" name="tools_fix" class="hz-check"></td><td>Tools</td> <td><input type="checkbox" name="alarms_ok" class="hz-check"></td><td><input type="checkbox" name="alarms_fix" class="hz-check"></td><td>Alarms</td></tr>
+                <tr><td><input type="checkbox" name="hazstorage_ok" class="hz-check"></td><td><input type="checkbox" name="hazstorage_fix" class="hz-check"></td><td>Haz. Storage</td> <td><input type="checkbox" name="powerlines_ok" class="hz-check"></td><td><input type="checkbox" name="powerlines_fix" class="hz-check"></td><td>Power Lines</td> <td><input type="checkbox" name="fireext_ok" class="hz-check"></td><td><input type="checkbox" name="fireext_fix" class="hz-check"></td><td>Fire Ext.</td></tr>
+                <tr><td><input type="checkbox" name="housekeep_ok" class="hz-check"></td><td><input type="checkbox" name="housekeep_fix" class="hz-check"></td><td>Housekeep.</td> <td><input type="checkbox" name="access_ok" class="hz-check"></td><td><input type="checkbox" name="access_fix" class="hz-check"></td><td>Access</td> <td><input type="checkbox" name="ladders_ok" class="hz-check"></td><td><input type="checkbox" name="ladders_fix" class="hz-check"></td><td>Ladders</td></tr>
+                <tr><td><input type="checkbox" name="heavyeq_ok" class="hz-check"></td><td><input type="checkbox" name="heavyeq_fix" class="hz-check"></td><td>Heavy Equip</td> <td><input type="checkbox" name="manual_ok" class="hz-check"></td><td><input type="checkbox" name="manual_fix" class="hz-check"></td><td>Manual Hand</td> <td><input type="checkbox" name="noise_ok" class="hz-check"></td><td><input type="checkbox" name="noise_fix" class="hz-check"></td><td>Noise</td></tr>
+                <tr><td><input type="checkbox" name="traffic_ok" class="hz-check"></td><td><input type="checkbox" name="traffic_fix" class="hz-check"></td><td>Traffic Cntrl</td> <td><input type="checkbox" name="grounds_ok" class="hz-check"></td><td><input type="checkbox" name="grounds_fix" class="hz-check"></td><td>Grounds</td> <td><input type="checkbox" name="other_ok" class="hz-check"></td><td><input type="checkbox" name="other_fix" class="hz-check"></td><td>Other</td></tr>
             </tbody>
         </table>
 
-        <div style="margin: 5px 0 10px 0;"><input type="text" placeholder="Notes/Additional Hazards..." style="border-bottom: 1px solid #000 !important; background: transparent;"></div>
+        <div style="margin: 5px 0 10px 0;"><input type="text" name="notes" placeholder="Notes/Additional Hazards..." style="border-bottom: 1px solid #000 !important; background: transparent;"></div>
 
-        <div style="text-align: center; margin-top: 5px; margin-bottom: 2px; font-weight: bold; font-size: 9px;"><span class="red-text">Identify the task and rank hazards, and then identify the plans to eliminate or control the hazard</span> <br><span class="red-text" style="font-size: 8px;">Rank Matrix System: 1-Immediate danger, 2-Serious injury, 3-Minor, 4-Negligible, 5-Not applicable &bull; A-Likely, B-Probable, C-Possible, D-Unlikely </span></div>
-        
         <table class="grid-table task-table" style="font-size: 9px;">
             <thead>
                 <tr style="background-color: #e5e5ea; font-weight: bold; text-align: center;">
@@ -202,37 +200,37 @@
                 </tr>
             </thead>
             <tbody>
-                <tr><td><textarea rows="1"></textarea></td><td><textarea rows="1"></textarea></td><td><input type="text" style="text-align:center;"></td><td><textarea rows="1"></textarea></td><td><input type="date"></td><td><input type="text"></td></tr>
-                <tr><td><textarea rows="1"></textarea></td><td><textarea rows="1"></textarea></td><td><input type="text" style="text-align:center;"></td><td><textarea rows="1"></textarea></td><td><input type="date"></td><td><input type="text"></td></tr>
-                <tr><td><textarea rows="1"></textarea></td><td><textarea rows="1"></textarea></td><td><input type="text" style="text-align:center;"></td><td><textarea rows="1"></textarea></td><td><input type="date"></td><td><input type="text"></td></tr>
+                <tr><td><textarea name="task1" rows="1"></textarea></td><td><textarea name="haz1" rows="1"></textarea></td><td><input type="text" name="rank1" style="text-align:center;"></td><td><textarea name="cont1" rows="1"></textarea></td><td><input type="date" name="date1"></td><td><input type="text" name="by1"></td></tr>
+                <tr><td><textarea name="task2" rows="1"></textarea></td><td><textarea name="haz2" rows="1"></textarea></td><td><input type="text" name="rank2" style="text-align:center;"></td><td><textarea name="cont2" rows="1"></textarea></td><td><input type="date" name="date2"></td><td><input type="text" name="by2"></td></tr>
+                <tr><td><textarea name="task3" rows="1"></textarea></td><td><textarea name="haz3" rows="1"></textarea></td><td><input type="text" name="rank3" style="text-align:center;"></td><td><textarea name="cont3" rows="1"></textarea></td><td><input type="date" name="date3"></td><td><input type="text" name="by3"></td></tr>
             </tbody>
         </table>
         
         <table class="grid-table">
             <tr>
-                <td style="width: 25%;"><strong class="red-text">Ambulance:</strong> <input type="text" value="911" style="width:60%; display:inline-block;"></td>
-                <td style="width: 25%;"><strong class="red-text">Fire:</strong> <input type="text" value="911" style="width:60%; display:inline-block;"></td>
-                <td style="width: 25%;"><strong class="red-text">Medical:</strong> <input type="text" style="width:60%; display:inline-block;"></td>
-                <td style="width: 25%;"><strong class="red-text">Police:</strong> <input type="text" value="911" style="width:60%; display:inline-block;"></td>
+                <td style="width: 25%;"><strong class="red-text">Ambulance:</strong> <input type="text" name="amb" value="911" style="width:60%; display:inline-block;"></td>
+                <td style="width: 25%;"><strong class="red-text">Fire:</strong> <input type="text" name="fire" value="911" style="width:60%; display:inline-block;"></td>
+                <td style="width: 25%;"><strong class="red-text">Medical:</strong> <input type="text" name="med" style="width:60%; display:inline-block;"></td>
+                <td style="width: 25%;"><strong class="red-text">Police:</strong> <input type="text" name="pol" value="911" style="width:60%; display:inline-block;"></td>
             </tr>
         </table>
         <table class="grid-table" style="margin-top: -11px;">
             <tr>
-                <td colspan="2"><strong>Comments:</strong> <textarea rows="2" style="margin-top: 4px;"></textarea></td>
+                <td colspan="2"><strong>Comments:</strong> <textarea name="comments" rows="2" style="margin-top: 4px;"></textarea></td>
             </tr>
             <tr>
                 <td style="width: 50%; vertical-align: top; padding-bottom: 15px;">
                     <strong>Employee Signatures:</strong> 
-                    <canvas class="sig-pad"></canvas>
+                    <canvas class="sig-pad" id="sigCanvas"></canvas>
                     <button type="button" class="clear-btn" onclick="clearSig()" style="font-size: 10px; cursor: pointer; display: block; margin-top: 2px;">Clear Signature</button>
                 </td>
                 <td style="width: 50%; vertical-align: top;">
-                    <div style="margin-bottom: 12px;"><strong class="red-text">Date Reviewed with crew:</strong> <input type="date" style="width: 50%; display: inline-block; background: var(--input-bg);"></div>
-                    <div><strong class="red-text">First Aid Attendant:</strong> <input type="text" style="width: 55%; display: inline-block; background: var(--input-bg);"></div>
+                    <div style="margin-bottom: 12px;"><strong class="red-text">Date Reviewed with crew:</strong> <input type="date" name="revDate" style="width: 50%; display: inline-block; background: var(--input-bg);"></div>
+                    <div><strong class="red-text">First Aid Attendant:</strong> <input type="text" name="firstAidName" style="width: 55%; display: inline-block; background: var(--input-bg);"></div>
                 </td>
             </tr>
         </table>
-    </div>
+    </form>
 </div>
 
 <div class="floating-action-panel">
@@ -240,10 +238,38 @@
 </div>
 
 <script>
+    const form = document.getElementById('hazardForm');
     const canvas = document.querySelector(".sig-pad");
     const signaturePad = new SignaturePad(canvas);
-    function clearSig() { signaturePad.clear(); }
+    const STORAGE_KEY = 'hazard_form_storage';
+
     function executeNativePrint() { window.print(); }
+    function clearSig() { signaturePad.clear(); saveData(); }
+
+    function saveData() {
+        const formData = new FormData(form);
+        const data = {};
+        formData.forEach((value, key) => data[key] = value);
+        data['signature'] = signaturePad.toDataURL();
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
+    }
+
+    form.addEventListener('input', saveData);
+
+    window.addEventListener('DOMContentLoaded', () => {
+        const saved = localStorage.getItem(STORAGE_KEY);
+        if (saved) {
+            const data = JSON.parse(saved);
+            Object.keys(data).forEach(key => {
+                const el = form.elements[key];
+                if (el) {
+                    if (el.type === 'checkbox') el.checked = (data[key] === 'on');
+                    else el.value = data[key];
+                }
+            });
+            if (data.signature) signaturePad.fromDataURL(data.signature);
+        }
+    });
 </script>
 
 </body>
