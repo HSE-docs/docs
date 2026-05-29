@@ -51,7 +51,7 @@
 
         <div class="header-grid">
             <div>
-                <div class="row"><label>DATE:</label><input type="text"></div>
+                <div class="row"><label>DATE:</label><input type="date" style="border:none; border-bottom: 1px solid #000; flex-grow:1;"></div>
                 <div class="row"><label>PLANNED QUANTITIES:</label><input type="text"></div>
                 <div class="row"><label>ACTUAL QTY:</label><input type="text"></div>
                 <div class="row"><label>PRODUCTION HOURS:</label><input type="text"></div>
@@ -106,10 +106,10 @@
         </div>
 
         <h3>COMMENTS:</h3>
-        <div class="comment-line"><input type="text" style="width:100%; border:none;"></div>
-        <div class="comment-line"><input type="text" style="width:100%; border:none;"></div>
-        <div class="comment-line"><input type="text" style="width:100%; border:none;"></div>
-        <div class="comment-line"><input type="text" style="width:100%; border:none;"></div>
+        <div class="comment-line"><input type="text" style="width:100%; border:none; background:transparent;"></div>
+        <div class="comment-line"><input type="text" style="width:100%; border:none; background:transparent;"></div>
+        <div class="comment-line"><input type="text" style="width:100%; border:none; background:transparent;"></div>
+        <div class="comment-line"><input type="text" style="width:100%; border:none; background:transparent;"></div>
 
         <div class="footer">C2 - COLAS GROUP INTERNAL: Employees and partners who need to know.</div>
     </div>
@@ -124,7 +124,7 @@
     <script>
         function clearAllData() {
             if(confirm("Are you sure you want to clear this report?")) {
-                document.querySelectorAll('input, textarea').forEach(el => {
+                document.querySelectorAll('input').forEach(el => {
                     if(el.type !== 'button') el.value = '';
                 });
             }
