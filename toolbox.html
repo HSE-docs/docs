@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Toolbox Talk Record</title>
+    <style>
+        body { 
+            font-family: 'Arial', sans-serif; 
+            line-height: 1.6; 
+            max-width: 800px; 
+            margin: 20px auto; 
+            padding: 20px; 
+            padding-bottom: 100px; /* Space for floating panel */
+        }
+        h1 { text-align: center; color: #2c3e50; }
+        .section { margin-bottom: 20px; padding: 15px; background: #f9f9f9; border-left: 5px solid #2c3e50; border-radius: 4px; }
+        label { font-weight: bold; display: block; margin-top: 10px; }
+        input, textarea { width: 100%; padding: 8px; margin-top: 5px; box-sizing: border-box; border: 1px solid #ccc; border-radius: 4px; }
+        table { width: 100%; border-collapse: collapse; margin-top: 20px; }
+        th, td { border: 1px solid #ddd; padding: 12px; text-align: left; }
+        th { background-color: #f2f2f2; }
+
+        /* Floating Panel Styles */
+        .floating-action-panel { 
+            position: fixed; bottom: 0; left: 0; right: 0; 
+            background: rgba(255, 255, 255, 0.95); 
+            backdrop-filter: blur(15px); 
+            padding: 10px; border-top: 1px solid #c6c6c8; 
+            z-index: 9999; display: flex; gap: 8px; justify-content: center; 
+        }
+        .action-btn { 
+            flex: 1; max-width: 120px; border: none; border-radius: 8px; 
+            padding: 12px; font-weight: 600; font-size: 13px; color: white; 
+            cursor: pointer; 
+        }
+        .btn-print { background-color: #007aff; }
+        .btn-clear { background-color: #ff3b30; }
+        .btn-back { background-color: #8e8e93; }
+        .btn-share { background-color: #5856d6; }
+
+        @media print { .floating-action-panel { display: none !important; } }
+    </style>
+</head>
+<body>
+
+    <h1>Toolbox Talk Meeting Record</h1>
+
+    <div class="section">
+        <label>Date:</label> <input type="date">
+        <label>Project Name / Site Location:</label> <input type="text">
+        <label>Supervisor/Presenter:</label> <input type="text">
+        <label>Safety Topic:</label> <input type="text">
+    </div>
+
+    <div class="section">
+        <label>Key Discussion Points & Hazards:</label>
+        <textarea rows="4"></textarea>
+        
+        <label>Control Measures (Actions to take):</label>
+        <textarea rows="4"></textarea>
+    </div>
+
+    <h3>Attendance Register</h3>
+    <table>
+        <tr><th>Name</th><th>Signature</th></tr>
+        <tr><td><input type="text"></td><td>_________________</td></tr>
+        <tr><td><input type="text"></td><td>_________________</td></tr>
+        <tr><td><input type="text"></td><td>_________________</td></tr>
+    </table>
+
+    <div class="floating-action-panel">
+        <button type="button" class="action-btn btn-back" onclick="window.history.back()">Back</button>
+        <button type="button" class="action-btn btn-clear" onclick="clearAllData()">Clear</button>
+        <button type="button" class="action-btn btn-print" onclick="window.print()">Print</button>
+        <button type="button" class="action-btn btn-share" onclick="shareForm()">Share</button>
+    </div>
+
+    <script>
+        function clearAllData() {
+            if(confirm("Are you sure you want to clear this report?")) {
+                document.querySelectorAll('input, textarea').forEach(el => {
+                    if(el.type !== 'button') el.value = '';
+                });
+            }
+        }
+
+        function shareForm() {
+            if (navigator.share) {
+                navigator.share({
+                    title: document.title,
+                    text: 'Toolbox Talk Report',
+                    url: window.location.href
+                }).catch(console.error);
+            } else {
+                alert("Sharing not supported on this device. Use Print to Save as PDF.");
+            }
+        }
+    </script>
+</body>
+</html>
