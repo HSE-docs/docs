@@ -9,11 +9,52 @@
         table { border-collapse: collapse; width: 100%; margin-bottom: 20px; }
         th, td { border: 1px solid #ccc; padding: 8px; text-align: left; }
         th { background-color: #f4f4f4; }
+
+        /* Floating Panel Styles */
+        .floating-action-panel { 
+            position: fixed; 
+            bottom: 0; 
+            left: 0; 
+            right: 0; 
+            background: rgba(255, 255, 255, 0.95); 
+            backdrop-filter: blur(15px); 
+            padding: 10px; 
+            border-top: 1px solid #c6c6c8; 
+            z-index: 9999; 
+            display: flex; 
+            gap: 10px; 
+            justify-content: center; 
+        }
+
+        .action-btn { 
+            flex: 1; 
+            max-width: 150px; 
+            border: none; 
+            border-radius: 8px; 
+            padding: 12px; 
+            font-weight: 600; 
+            font-size: 13px; 
+            color: white; 
+            cursor: pointer; 
+        }
+
+        .btn-print { background-color: #007aff; } /* Apple Blue */
+        .btn-back { background-color: #8e8e93; }   /* Apple Gray */
+
+        /* Ensure buttons disappear when printing */
+        @media print { 
+            .floating-action-panel { display: none !important; } 
+        }
     </style>
 </head>
 <body>
-    <h1>Current Published Data</h1>
+    <h1>Current Published Job List</h1>
     <div id="display">Loading data from GitHub...</div>
+
+    <div class="floating-action-panel">
+        <button class="action-btn btn-back" onclick="window.location.href='../index.html'">Back</button>
+        <button class="action-btn btn-print" onclick="window.print()">Print</button>
+    </div>
 
     <script>
         const GIST_ID = "d0511895caedad56507d83f23b72b850"; // <--- ENTER GIST ID HERE
