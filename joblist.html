@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Docx Populator</title>
+    <script src="https://unpkg.com/docxtemplater@3.49.0/build/docxtemplater.js"></script>
+    <script src="https://unpkg.com/pizzip@3.1.7/dist/pizzip.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.5/FileSaver.min.js"></script>
+</head>
+<body>
+
+    <h2>Populate Word Template</h2>
+    <input type="file" id="templateFile" accept=".docx">
+    <button onclick="generate()">Generate Document</button>
+
+    <script>
+        function generate() {
+            const fileInput = document.getElementById('templateFile');
+            if (fileInput.files.length === 0) return alert("Please select a file.");
+
+            const reader = new FileReader();
+            reader.readAsBinaryString(fileInput.files[0]);
+            reader.onload = function(e) {
+                const content = e.target.result;
+                const zip = new PizZip(content);
+                const doc = new docxtemplater(zip, { paragraphLoop: true, linebreaks: true });
+
+                // Define data to populate
+                doc.setData({
+                    name: "John Doe",
+                    date: new Date().toLocaleDateString(),
+                    company: "Acme Corp"
+                });
+
+                try {
+                    doc.render();
+                } catch (error) {
+                    console.error(error);
+                    alert("Error: " + error.message);
+                }
+
+                const out = doc.getZip().generate({ type: "blob", mimeType: "application/vnd.openxmlformats-officedocument.wordprocessingml.document" });
+                saveAs(out, "output.docx");
+            };
+        }
+    </script>
+</body>
+</html>
