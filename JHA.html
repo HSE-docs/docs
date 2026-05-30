@@ -71,7 +71,6 @@
         .btn-print { background-color: #007aff; }
         .btn-clear { background-color: #ff3b30; }
         .btn-back { background-color: #8e8e93; }
-        .btn-share { background-color: #5856d6; }
         
         @media print { 
             @page { size: portrait; margin: 0.15in; }
@@ -236,7 +235,6 @@
     <button type="button" class="action-btn btn-back" onclick="window.location.href='index.html'">Back</button>
     <button type="button" class="action-btn btn-clear" onclick="clearAllData()">Clear</button>
     <button type="button" class="action-btn btn-print" onclick="window.print()">Print</button>
-    <button type="button" class="action-btn btn-share" onclick="shareForm()">Share</button>
 </div>
 
 <script>
@@ -283,19 +281,6 @@
     function clearSig() {
         signaturePad.clear();
         form.dispatchEvent(new Event('input'));
-    }
-
-    // Modern Share Logic
-    function shareForm() {
-        if (navigator.share) {
-            navigator.share({
-                title: 'Daily Hazard Assessment',
-                text: 'Here is my completed Daily Hazard Assessment.',
-                url: window.location.href
-            }).catch(console.error);
-        } else {
-            alert("Sharing is not supported on this device. Please use the Print button to Save as PDF.");
-        }
     }
 </script>
 
