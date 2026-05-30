@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Public Data View</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+    <style>
+        body { font-family: sans-serif; padding: 20px; }
+        table { border-collapse: collapse; width: 100%; margin-bottom: 20px; }
+        th, td { border: 1px solid #ccc; padding: 8px; text-align: left; }
+        th { background-color: #f4f4f4; }
+    </style>
+</head>
+<body>
+    <h1>Current Published Data</h1>
+    <div id="display">Loading data from GitHub...</div>
+
+    <script>
+        const GIST_ID = "d0511895caedad56507d83f23b72b850"; // <--- ENTER GIST ID HERE
+
+        async function fetchData() {
+            try {
+                const res = await fetch(`https://api.github.com/gists/${GIST_ID}`);
+                const data = await res.json();
+                const workbook = JSON.parse(data.files['data.json'].content);
+                
+                const container = document.getElementById('display');
+                container.innerHTML = '';
+                
+                workbook.SheetNames.forEach(name => {
+                    const html = XLSX.utils.sheet_to_html(workbook.Sheets[name]);
+                    container.innerHTML += `<h3>${name}</h3><div>${html}</div>`;
+                });
+            } catch (err) {
+                document.getElementById('display').innerHTML = "Error loading data. Check Gist ID.";
+            }
+        }
+        fetchData();
+    </script>
+</body>
+</html>
