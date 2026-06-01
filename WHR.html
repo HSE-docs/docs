@@ -1,122 +1,237 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <link href="https://fonts.googleapis.com/css2?family=Homemade+Apple&display=swap" rel="stylesheet">
     <style>
         body { font-family: 'Arial', sans-serif; font-size: 10pt; width: 8.5in; margin: auto; padding: 20px; padding-bottom: 80px; }
         
-        .header-top { border-bottom: 2px solid black; padding-top: 20px; padding-bottom: 5px; margin-bottom: 10px; text-align: center; }
-        .company-name { font-size: 20pt; font-weight: 800; margin-bottom: 2px; }
-        .company-division { font-size: 10pt; margin-bottom: 0px; }
-        .company-details { font-weight: bold; font-size: 8pt; margin-top: 2px; }
-        
-        .footer-title { text-align: center; font-weight: bold; font-size: 14pt; padding-top: 5px; }
-        
-        table { width: 100%; border-collapse: collapse; table-layout: fixed; margin-bottom: 0px; }
-        /* TIGHTER CELL HEIGHTS TO RECLAIM SPACE */
-        td { border: 1px solid black; padding: 0px; height: 24.5px; } 
-        td input { width: 100%; height: 100%; border: none; padding: 0 2px; box-sizing: border-box; font-size: 10pt; }
-        th { border: 1px solid black; padding: 2px; height: 14px; text-align: center; font-weight: bold; font-size: 8.5pt; }
-        
-        .remarks-footer { text-align: center; font-weight: bold; height: 14px; padding: 0px; font-size: 8.5pt; }
-        .tall-bottom-cell { height: 90px; border-bottom: none; } 
-        .middle-cell { height: 24.5px; border-left: 1px solid black; border-right: 1px solid black; border-bottom: none; }
-        .bottom-cell { height: 21.95px; border: 1px solid black; border-top: none !important; padding: 0 5px; font-size: 9pt; }
-        .bottom-cell-wrapper { display: flex; justify-content: space-between; align-items: flex-end; width: 100%; height: 100%; }
+        .faded { color: #999 !important; }
+        .normal { color: #000 !important; }
 
-        .large-col { width: 29.375%; }
-        .med-small-col { width: 7.5%; }
-        .very-small-col { width: 5.625%; }
+        .header-top { border-bottom: 1px solid black; padding: 20px 0 10px 0; margin-bottom: 0px; position: relative; text-align: center; }
+        .header-logo { position: absolute; left: 0; top: 20px; width: 90px; height: 100px; }
+        .company-name { font-size: 16pt; font-weight: 800; margin-bottom: 1px; }
+        .company-division { font-size: 8pt; font-weight: normal; margin-bottom: 0px; }
+        .company-details { font-weight: bold; font-size: 6pt; margin-top: 2px; }
         
-        .form-info { display: flex; flex-wrap: wrap; gap: 5px; margin-bottom: 10px; }
-        .form-info div { border-bottom: 1px solid black; flex: 1 1 30%; font-size: 9pt; }
+        .form-container { display: flex; border-top: 1px solid black; border-bottom: 1px solid black; width: 100%; box-sizing: border-box; }
+        .left-col { width: 30.292%; border-left: 1px solid black; border-right: none; padding: 10px; box-sizing: border-box; }
+        .spacer-block { width: 12.3%; box-sizing: border-box; } 
+        .right-col { flex-grow: 1; border-right: 1px solid black; padding: 10px; box-sizing: border-box; }
         
-        .floating-action-panel { position: fixed; bottom: 0; left: 0; right: 0; background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(15px); padding: 10px; border-top: 1px solid #c6c6c8; z-index: 9999; display: flex; gap: 8px; justify-content: center; }
-        .action-btn { flex: 1; max-width: 120px; border: none; border-radius: 8px; padding: 12px; font-weight: 600; font-size: 13px; color: white; cursor: pointer; }
+        .form-row { display: flex; align-items: center; margin-bottom: 8px; border-bottom: 1px solid black; padding-bottom: 2px; }
+        .label-text { font-weight: bold; margin-right: 5px; white-space: nowrap; font-size: 9pt; }
+        .input-wrapper { flex-grow: 1; display: flex; align-items: center; }
+        
+        input, select { color: #000000 !important; border: none; background: transparent; padding: 0px 2px; font-family: inherit; outline: none; cursor: pointer; }
+
+        .footer-title { text-align: center; font-weight: bold; font-size: 14pt; padding-top: 5px; margin-top: 5px; }
+        table { width: 100%; border-collapse: collapse; margin-bottom: 0px; table-layout: fixed; }
+        td { border: 1px solid black; padding: 0; height: 25.5px; overflow: hidden; position: relative; }
+        th { border: 1px solid black; padding: 2px; height: 9px; vertical-align: middle; text-align: center; font-weight: bold; font-size: 8pt; border-top: none; }
+        
+        .remarks-col-header { text-align: center !important; }
+
+        .sta-cell { border: 1px solid black !important; border-right: none !important; position: relative; }
+        .to-cell { border: 1px solid black !important; border-left: none !important; position: relative; }
+        .label-sta, .label-to { position: absolute; bottom: 0; left: 2px; font-size: 6pt; color: #888; pointer-events: none; z-index: 0; }
+        .input-sub { padding-left: 20px !important; }
+        
+        .remarks-header { text-align: center; font-weight: bold; height: 9px; padding: 2px; font-size: 8pt; border-left: 1px solid black; border-right: 1px solid black; }
+        .remarks-large-box { height: 76.5px; border-left: 1px solid black; border-right: 1px solid black; padding: 0; position: relative; }
+        .remarks-large-box input { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none; padding: 5px; box-sizing: border-box; text-align: left; outline: none; background: transparent; }
+
+        .signature-cell { height: 60px; vertical-align: bottom; padding: 5px 10px; border-top: none !important; border-bottom: 1px solid black; }
+        .left-sig { border-left: 1px solid black !important; border-right: none !important; }
+        .right-sig { border-right: 1px solid black !important; border-left: none !important; }
+        
+        /* Updated to Homemade Apple, no other changes */
+        .signature-input { font-family: 'Homemade Apple', cursive !important; font-size: 12pt !important; border: none !important; border-bottom: 1px solid #000 !important; width: 45% !important; display: block; }
+        
+        .total-row { height: 25.5px !important; }
+        .total-row td { height: 25.5px !important; padding: 0 !important; }
+        .large-col { width: 15.146%; } 
+        .med-small-col { width: 4.1%; }
+        .very-small-col { width: 3.1%; }
+        .merged-remarks-col { width: 22.346%; } 
+        .total-label { text-align: right; font-weight: bold; vertical-align: middle; padding-right: 5px; }
+
+        .header-unit { display: flex; justify-content: flex-start; align-items: center; width: 100%; gap: 25%; padding-left: 5px; }
+        
+        .floating-action-panel { position: fixed; bottom: 0; left: 0; right: 0; background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(15px); padding: 30px; border-top: 1px solid #c6c6c8; z-index: 9999; display: flex; gap: 10px; justify-content: center; }
+        .action-btn { flex: 1; border: none; border-radius: 28px; padding: 30px 5px; font-weight: 700; font-size: 40px; color: white; cursor: pointer; text-decoration: none; text-align: center; display: flex; align-items: center; justify-content: center; white-space: nowrap; }
         .btn-print { background-color: #007aff; }
         .btn-clear { background-color: #ff3b30; }
         .btn-back { background-color: #8e8e93; }
-        .btn-share { background-color: #5856d6; }
-        
-        @media print {
-            .floating-action-panel { display: none !important; }
-            /* Force the document to ignore standard breaks */
-            body { margin: 0; padding: 0; }
-            @page { margin: 5mm; size: auto; }
-        }
+        @media print { .floating-action-panel { display: none !important; } }
     </style>
 </head>
 <body>
-
     <div class="header-top">
+        <img src="Images/bwlogo.jpeg" alt="Logo" class="header-logo">
         <div class="company-name">Miller Paving LTD</div>
         <div class="company-division">a division of Miller Group Inc.</div>
-        <div class="company-details">2276 Route 128 Hwy, Berry Mills, NB E1G 4K4 | Tel.: (506) 857-0112 | Fax: (506) 867-0490</div>
+        <div class="company-details">2276 Route 128 Hwy, Berry Mills, NB E1G 4K4<br>Tel.: (506) 857-0112<br>Fax: (506) 867-0490</div>
+    </div>
+    
+    <div class="form-container">
+        <div class="left-col">
+            <div class="form-row">
+                <div class="label-text">Date:</div>
+                <div style="display: flex; align-items: center; gap: 2px;">
+                    <select id="month" class="faded" onchange="this.className=this.value?'normal':'faded'">
+                        <option value="">MM</option><option value="Jan">Jan</option><option value="Feb">Feb</option><option value="Mar">Mar</option><option value="Apr">Apr</option><option value="May">May</option><option value="Jun">Jun</option><option value="Jul">Jul</option><option value="Aug">Aug</option><option value="Sep">Sep</option><option value="Oct">Oct</option><option value="Nov">Nov</option><option value="Dec">Dec</option>
+                    </select>
+                    <span>/</span>
+                    <select id="day" class="faded" onchange="this.className=this.value?'normal':'faded'">
+                        <option value="">DD</option><script>for(let i=1; i<=31; i++) document.write(`<option value="${i}">${i}</option>`);</script>
+                    </select>
+                    <span>/</span>
+                    <select id="year" class="faded" onchange="this.className=this.value?'normal':'faded'">
+                        <option value="">YYYY</option><script>for(let i=2026; i<=2030; i++) document.write(`<option value="${i}">${i}</option>`);</script>
+                    </select>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="label-text">Job #:</div>
+                <span class="input-wrapper">
+                    <input type="text" list="job-list" id="job-number-input" data-no-clear="true">
+                    <datalist id="job-list"></datalist>
+                </span>
+            </div>
+            <div class="form-row"><div class="label-text">Contract #:</div><span class="input-wrapper"><input type="text"></span></div>
+            <div class="form-row">
+                <div class="label-text">Weather:</div>
+                <select id="weather" class="faded" onchange="this.className=this.value?'normal':'faded'" style="width: 100%;">
+                    <option value="">Select Weather...</option>
+                    <option value="Sunny">Sunny</option><option value="Cloudy">Cloudy</option>
+                    <option value="Overcast">Overcast</option><option value="Light Rain">Light Rain</option>
+                    <option value="Heavy Rain">Heavy Rain</option><option value="Snow">Snow</option>
+                    <option value="Foggy">Foggy</option>
+                </select>
+            </div>
+        </div>
+        <div class="spacer-block"></div>
+        <div class="right-col">
+            <div class="form-row"><div class="label-text">Contractor:</div><span class="input-wrapper"><input type="text"></span></div>
+            <div class="form-row"><div class="label-text">Location:</div><span class="input-wrapper"><input type="text"></span></div>
+            <div class="form-row"><div class="label-text">Work Description:</div><span class="input-wrapper"><input type="text"></span></div>
+            <div class="form-row"><span class="input-wrapper"><input type="text"></span></div>
+        </div>
     </div>
 
-    <div class="form-info">
-        <div>Date: <input type="text" id="d"></div><div>Job #: <input type="text" id="j"></div>
-        <div>Contract #: <input type="text" id="c"></div><div>Weather: <input type="text" id="w"></div>
-        <div>Contractor: <input type="text" id="con"></div><div>Location: <input type="text" id="l"></div>
-    </div>
-
-    <div style="font-size: 9pt; margin-bottom: 10px;">Work Description: <input type="text" id="wd" style="border:none; border-bottom:1px solid black; width:70%;"></div>
-
     <table>
-        <thead><tr><th class="large-col">Length</th><th class="med-small-col">Meters</th><th class="med-small-col">Width</th><th class="med-small-col">M2</th><th class="very-small-col">Depth</th><th class="med-small-col">Mainlane</th><th class="very-small-col">Ramp</th><th class="large-col">Comments</th></tr></thead>
+        <thead>
+            <tr><th colspan="2" class="large-col">Length</th><th class="med-small-col">Meters</th><th class="med-small-col">Width</th><th class="med-small-col">M2</th><th class="very-small-col">Depth</th><th class="med-small-col">Mainlane</th><th class="very-small-col">Ramp</th><th class="large-col">Comments</th></tr>
+        </thead>
         <tbody>
-            <script>for(let r=1; r<=7; r++) document.write(`<tr>${[...Array(8)].map((_,c)=>`<td><input type="text" id="t1r${r}c${c+1}"></td>`).join('')}</tr>`);</script>
+            <script>
+                for(let i=1; i<=7; i++) {
+                    document.write(`<tr><td class="sta-cell"><input type="text" class="input-sub" id="sta${i}" oninput="calculateStationDistance(${i})"><span class="label-sta">Sta</span></td><td class="to-cell"><input type="text" class="input-sub" id="to${i}" oninput="calculateStationDistance(${i})"><span class="label-to">to</span></td><td><input type="text" id="meters${i}" oninput="calculateRow(${i})"></td><td><input type="text" id="width${i}" oninput="calculateRow(${i})"></td><td><input type="text" id="m2_${i}" class="m2-calc" oninput="calculateRow(${i})"></td><td><input type="text" id="depth${i}" oninput="calculateRow(${i})"></td><td><input type="text"></td><td><input type="text"></td><td><input type="text" id="liters_${i}" class="liters-calc"></td></tr>`);
+                }
+            </script>
+            <tr class="total-row"><td colspan="4" class="total-label">Total M2:</td><td><input type="text" id="totalM2"></td><td></td><td></td><td></td><td><input type="text" id="totalLiters"></td></tr>
         </tbody>
     </table>
-
     <table>
-        <thead><tr><th class="large-col">Employee Name</th><th class="med-small-col">Working</th><th class="med-small-col">Standby</th><th class="med-small-col">Travel</th><th class="very-small-col">Total</th><th class="med-small-col"></th><th class="very-small-col"></th><th class="large-col">Remarks</th></tr></thead>
-        <tbody>
-            <script>for(let r=1; r<=8; r++) document.write(`<tr>${[...Array(8)].map((_,c)=>`<td><input type="text" id="t2r${r}c${c+1}"></td>`).join('')}</tr>`);</script>
-        </tbody>
+        <thead><tr><th class="large-col">Employee Name</th><th class="med-small-col">Working</th><th class="med-small-col">Standby</th><th class="med-small-col">Travel</th><th class="very-small-col">Total</th><th class="merged-remarks-col remarks-col-header">Remarks</th></tr></thead>
+        <tbody><script>for(let i=0; i<8; i++) { document.write(`<tr><td><input type="text"></td><td><input type="text"></td><td><input type="text"></td><td><input type="text"></td><td><input type="text"></td><td><input type="text"></td></tr>`); }</script></tbody>
     </table>
-
     <table>
-        <thead><tr><th class="large-col">Unit # / Description</th><th class="med-small-col">Working</th><th class="med-small-col">Standby</th><th class="med-small-col">Travel</th><th class="very-small-col">Total</th><th class="med-small-col"></th><th class="very-small-col"></th><th class="large-col">Remarks</th></tr></thead>
-        <tbody>
-            <script>for(let r=1; r<=8; r++) document.write(`<tr>${[...Array(8)].map((_,c)=>`<td><input type="text" id="t3r${r}c${c+1}"></td>`).join('')}</tr>`);</script>
-        </tbody>
+        <thead>
+            <tr>
+                <th class="large-col">
+                    <div class="header-unit"><span>Unit #</span><span>Description</span></div>
+                </th>
+                <th class="med-small-col">Working</th><th class="med-small-col">Standby</th><th class="med-small-col">Travel</th><th class="very-small-col">Total</th><th class="merged-remarks-col remarks-col-header">Remarks</th>
+            </tr>
+        </thead>
+        <tbody><script>for(let i=0; i<8; i++) { document.write(`<tr><td><input type="text"></td><td><input type="text"></td><td><input type="text"></td><td><input type="text"></td><td><input type="text"></td><td><input type="text"></td></tr>`); }</script></tbody>
         <tfoot>
-            <tr><td colspan="8" class="remarks-footer">REMARKS</td></tr>
-            <tr><td colspan="8" class="tall-bottom-cell"><input type="text" id="rem" style="height:100%; width:100%;"></td></tr>
-            <tr><td colspan="8" class="middle-cell"></td></tr>
-            <tr><td colspan="8" class="bottom-cell"><div class="bottom-cell-wrapper"><span>Company Representative</span><span>Contract/Engineer Representative</span></div></td></tr>
-            <tr><td colspan="8" style="border: none;"><div class="footer-title">WORK HISTORY REPORT</div></td></tr>
+            <tr><td colspan="6" class="remarks-header">REMARKS</td></tr>
+            <tr><td colspan="6" class="remarks-large-box"><input type="text"></td></tr>
+            <tr>
+                <td colspan="3" class="signature-cell left-sig">
+                    <input type="text" class="signature-input" placeholder="">
+                    <div style="font-size: 8pt; font-weight: bold; margin-top: 2px;">Company Representative</div>
+                </td>
+                <td colspan="3" class="signature-cell right-sig" style="text-align: right;">
+                    <input type="text" class="signature-input" placeholder="" style="margin-left: auto;">
+                    <div style="font-size: 8pt; font-weight: bold; margin-top: 2px;">Contract/Engineer Representative</div>
+                </td>
+            </tr>
         </tfoot>
     </table>
+    
+    <div class="footer-title">WORK HISTORY REPORT</div>
 
     <div class="floating-action-panel">
-        <button type="button" class="action-btn btn-back" onclick="window.location.href='index.html'">Back</button>
-        <button type="button" class="action-btn btn-clear" onclick="clearAllData()">Clear</button>
-        <button type="button" class="action-btn btn-print" onclick="window.print()">Print</button>
-        <button type="button" class="action-btn btn-share" onclick="shareForm()">Share</button>
+        <a href="index.html" class="action-btn btn-back">Back</a>
+        <button class="action-btn btn-clear" onclick="clearAllData()">Clear</button>
+        <button class="action-btn btn-print" onclick="window.print()">Print</button>
     </div>
 
     <script>
-        document.querySelectorAll('input').forEach(el => {
-            if (el.id) {
-                el.value = localStorage.getItem(el.id) || '';
-                el.addEventListener('input', () => localStorage.setItem(el.id, el.value));
+        const jobInput = document.getElementById('job-number-input');
+        const jobList = document.getElementById('job-list');
+
+        function loadSavedJobs() {
+            const savedJobs = JSON.parse(localStorage.getItem('miller_saved_jobs')) || [];
+            savedJobs.forEach(job => addOptionToDatalist(job));
+        }
+
+        function addOptionToDatalist(job) {
+            if (!document.querySelector(`#job-list option[value="${job}"]`)) {
+                let option = document.createElement('option');
+                option.value = job;
+                jobList.appendChild(option);
             }
+        }
+
+        jobInput.addEventListener('change', () => {
+            const val = jobInput.value.toUpperCase().trim();
+            if (!val) return;
+            let savedJobs = JSON.parse(localStorage.getItem('miller_saved_jobs')) || [];
+            if (!savedJobs.includes(val)) {
+                savedJobs.push(val);
+                localStorage.setItem('miller_saved_jobs', JSON.stringify(savedJobs));
+                addOptionToDatalist(val);
+            }
+        });
+
+        loadSavedJobs();
+
+        const allElements = document.querySelectorAll('input, select');
+        allElements.forEach((el, index) => {
+            el.setAttribute('data-storage-id', 'miller_input_' + index);
+            el.value = localStorage.getItem('miller_input_' + index) || '';
+            
+            if (el.tagName === 'SELECT') {
+                el.className = el.value ? 'normal' : 'faded';
+            }
+            
+            el.addEventListener('input', () => { 
+                localStorage.setItem('miller_input_' + index, el.value);
+                if (el.tagName === 'SELECT') el.className = el.value ? 'normal' : 'faded';
+            });
         });
 
         function clearAllData() {
             if(confirm("Are you sure you want to clear this report?")) {
-                localStorage.clear();
-                location.reload();
+                document.querySelectorAll('input, select').forEach(el => {
+                    if (el.getAttribute('data-no-clear') !== 'true') {
+                        el.value = '';
+                        localStorage.removeItem(el.getAttribute('data-storage-id'));
+                        if (el.tagName === 'SELECT') el.className = 'faded';
+                    }
+                });
             }
         }
-        function shareForm() {
-            if (navigator.share) {
-                navigator.share({title: 'Work History Report', url: window.location.href}).catch(console.error);
-            } else {
-                alert("Sharing not supported on this device. Use Print to Save as PDF.");
-            }
-        }
+
+        function parseStation(val) { if (!val || !val.includes('+')) return 0; const parts = val.split('+'); return (parseFloat(parts[0]) * 1000) + parseFloat(parts[1]); }
+        function calculateStationDistance(row) { const staVal = document.getElementById('sta' + row).value; const toVal = document.getElementById('to' + row).value; const staMeters = parseStation(staVal); const toMeters = parseStation(toVal); if (staVal !== "" || toVal !== "") { const diff = Math.abs(toMeters - staMeters); document.getElementById('meters' + row).value = diff; localStorage.setItem(document.getElementById('meters' + row).getAttribute('data-storage-id'), diff); calculateRow(row); } }
+        function calculateRow(row) { const meters = parseFloat(document.getElementById('meters' + row).value) || 0; const width = parseFloat(document.getElementById('width' + row).value) || 0; const depth = parseFloat(document.getElementById('depth' + row).value) || 0; if (meters > 0 && width > 0) { const val = (meters * width); document.getElementById('m2_' + row).value = val; localStorage.setItem(document.getElementById('m2_' + row).getAttribute('data-storage-id'), val); } const currentM2 = parseFloat(document.getElementById('m2_' + row).value) || 0; const liters = (currentM2 * depth); const litField = document.getElementById('liters_' + row); const litFieldVal = (liters > 0) ? liters + ' Liters' : ''; litField.value = litFieldVal; localStorage.setItem(litField.getAttribute('data-storage-id'), litFieldVal); calculateTotal(); }
+        function calculateTotal() { let totalM2 = 0; let totalLiters = 0; document.querySelectorAll('.m2-calc').forEach(el => totalM2 += parseFloat(el.value) || 0); document.querySelectorAll('.liters-calc').forEach(el => { const val = parseFloat(el.value.toString().replace(/[^0-9.]/g, '')) || 0; totalLiters += val; }); const m2Field = document.getElementById('totalM2'); const litField = document.getElementById('totalLiters'); m2Field.value = totalM2 > 0 ? totalM2 : ''; litField.value = totalLiters > 0 ? totalLiters + ' Total Liters' : ''; localStorage.setItem(m2Field.getAttribute('data-storage-id'), m2Field.value); localStorage.setItem(litField.getAttribute('data-storage-id'), litField.value); }
     </script>
 </body>
 </html>
