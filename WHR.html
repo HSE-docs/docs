@@ -63,7 +63,24 @@
         .btn-print { background-color: #007aff; }
         .btn-clear { background-color: #ff3b30; }
         .btn-back { background-color: #8e8e93; }
-        @media print { .floating-action-panel { display: none !important; } }
+        @media print {
+    /* Hide the buttons */
+    .floating-action-panel { display: none !important; }
+
+    /* Balanced row height (increased from 18px to 21px to prevent 'too much' shrinking) */
+    td { height: 21px !important; }
+    
+    /* Slightly larger boxes for readability */
+    .remarks-large-box { height: 50px !important; }
+    .signature-cell { height: 50px !important; }
+    
+    /* Keep font at 9pt for better readability */
+    body { font-size: 9pt !important; padding: 10px !important; }
+    
+    /* Ensure the page is treated as standard Letter */
+    @page { size: letter portrait; margin: 0.25in; }
+}
+
     </style>
 </head>
 <body>
