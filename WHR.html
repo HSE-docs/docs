@@ -45,7 +45,6 @@
         .left-sig { border-left: 1px solid black !important; border-right: none !important; }
         .right-sig { border-right: 1px solid black !important; border-left: none !important; }
         
-        /* Updated to Homemade Apple, no other changes */
         .signature-input { font-family: 'Homemade Apple', cursive !important; font-size: 12pt !important; border: none !important; border-bottom: 1px solid #000 !important; width: 45% !important; display: block; }
         
         .total-row { height: 25.5px !important; }
@@ -64,23 +63,13 @@
         .btn-clear { background-color: #ff3b30; }
         .btn-back { background-color: #8e8e93; }
         @media print {
-    /* Hide the buttons */
-    .floating-action-panel { display: none !important; }
-
-    /* Balanced row height (increased from 18px to 21px to prevent 'too much' shrinking) */
-    td { height: 21px !important; }
-    
-    /* Slightly larger boxes for readability */
-    .remarks-large-box { height: 50px !important; }
-    .signature-cell { height: 50px !important; }
-    
-    /* Keep font at 9pt for better readability */
-    body { font-size: 9pt !important; padding: 10px !important; }
-    
-    /* Ensure the page is treated as standard Letter */
-    @page { size: letter portrait; margin: 0.25in; }
-}
-
+            .floating-action-panel { display: none !important; }
+            td { height: 21px !important; }
+            .remarks-large-box { height: 50px !important; }
+            .signature-cell { height: 50px !important; }
+            body { font-size: 9pt !important; padding: 10px !important; }
+            @page { size: letter portrait; margin: 0.25in; }
+        }
     </style>
 </head>
 <body>
@@ -246,9 +235,55 @@
         }
 
         function parseStation(val) { if (!val || !val.includes('+')) return 0; const parts = val.split('+'); return (parseFloat(parts[0]) * 1000) + parseFloat(parts[1]); }
-        function calculateStationDistance(row) { const staVal = document.getElementById('sta' + row).value; const toVal = document.getElementById('to' + row).value; const staMeters = parseStation(staVal); const toMeters = parseStation(toVal); if (staVal !== "" || toVal !== "") { const diff = Math.abs(toMeters - staMeters); document.getElementById('meters' + row).value = diff; localStorage.setItem(document.getElementById('meters' + row).getAttribute('data-storage-id'), diff); calculateRow(row); } }
-        function calculateRow(row) { const meters = parseFloat(document.getElementById('meters' + row).value) || 0; const width = parseFloat(document.getElementById('width' + row).value) || 0; const depth = parseFloat(document.getElementById('depth' + row).value) || 0; if (meters > 0 && width > 0) { const val = (meters * width); document.getElementById('m2_' + row).value = val; localStorage.setItem(document.getElementById('m2_' + row).getAttribute('data-storage-id'), val); } const currentM2 = parseFloat(document.getElementById('m2_' + row).value) || 0; const liters = (currentM2 * depth); const litField = document.getElementById('liters_' + row); const litFieldVal = (liters > 0) ? liters + ' Liters' : ''; litField.value = litFieldVal; localStorage.setItem(litField.getAttribute('data-storage-id'), litFieldVal); calculateTotal(); }
-        function calculateTotal() { let totalM2 = 0; let totalLiters = 0; document.querySelectorAll('.m2-calc').forEach(el => totalM2 += parseFloat(el.value) || 0); document.querySelectorAll('.liters-calc').forEach(el => { const val = parseFloat(el.value.toString().replace(/[^0-9.]/g, '')) || 0; totalLiters += val; }); const m2Field = document.getElementById('totalM2'); const litField = document.getElementById('totalLiters'); m2Field.value = totalM2 > 0 ? totalM2 : ''; litField.value = totalLiters > 0 ? totalLiters + ' Total Liters' : ''; localStorage.setItem(m2Field.getAttribute('data-storage-id'), m2Field.value); localStorage.setItem(litField.getAttribute('data-storage-id'), litField.value); }
+        
+        function calculateStationDistance(row) { 
+            const staVal = document.getElementById('sta' + row).value; 
+            const toVal = document.getElementById('to' + row).value; 
+            const staMeters = parseStation(staVal); 
+            const toMeters = parseStation(toVal); 
+            if (staVal !== "" || toVal !== "") { 
+                const diff = Math.floor(Math.abs(toMeters - staMeters)); 
+                document.getElementById('meters' + row).value = diff; 
+                localStorage.setItem(document.getElementById('meters' + row).getAttribute('data-storage-id'), diff); 
+                calculateRow(row); 
+            } 
+        }
+        
+        function calculateRow(row) { 
+            const meters = parseFloat(document.getElementById('meters' + row).value) || 0; 
+            const width = parseFloat(document.getElementById('width' + row).value) || 0; 
+            const depth = parseFloat(document.getElementById('depth' + row).value) || 0; 
+            
+            if (meters > 0 && width > 0) { 
+                const val = Math.floor(meters * width); 
+                document.getElementById('m2_' + row).value = val; 
+                localStorage.setItem(document.getElementById('m2_' + row).getAttribute('data-storage-id'), val); 
+            } 
+            
+            const currentM2 = parseFloat(document.getElementById('m2_' + row).value) || 0; 
+            const liters = Math.floor(currentM2 * depth); 
+            const litField = document.getElementById('liters_' + row); 
+            const litFieldVal = (liters > 0) ? liters + ' Liters' : ''; 
+            litField.value = litFieldVal; 
+            localStorage.setItem(litField.getAttribute('data-storage-id'), litFieldVal); 
+            calculateTotal(); 
+        }
+        
+        function calculateTotal() { 
+            let totalM2 = 0; 
+            let totalLiters = 0; 
+            document.querySelectorAll('.m2-calc').forEach(el => totalM2 += Math.floor(parseFloat(el.value) || 0)); 
+            document.querySelectorAll('.liters-calc').forEach(el => { 
+                const val = Math.floor(parseFloat(el.value.toString().replace(/[^0-9.]/g, '')) || 0); 
+                totalLiters += val; 
+            }); 
+            const m2Field = document.getElementById('totalM2'); 
+            const litField = document.getElementById('totalLiters'); 
+            m2Field.value = totalM2 > 0 ? totalM2 : ''; 
+            litField.value = totalLiters > 0 ? totalLiters + ' Total Liters' : ''; 
+            localStorage.setItem(m2Field.getAttribute('data-storage-id'), m2Field.value); 
+            localStorage.setItem(litField.getAttribute('data-storage-id'), litField.value); 
+        }
     </script>
 </body>
 </html>
