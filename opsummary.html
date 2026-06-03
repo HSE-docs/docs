@@ -46,14 +46,12 @@
             vertical-align: middle; box-sizing: border-box;
         }
 
-        /* Floating Action Panel */
-        .floating-action-panel { 
-            position: fixed; bottom: 0; left: 0; right: 0; background: rgba(255, 255, 255, 0.95); 
-            backdrop-filter: blur(15px); padding: 8px; border-top: 1px solid #c6c6c8; 
-            z-index: 9999; display: flex; gap: 5px; justify-content: center; 
-        }
-        .action-btn { flex: 1; max-width: 100px; border: none; border-radius: 6px; padding: 8px; font-weight: 600; font-size: 12px; color: white; cursor: pointer; }
-        .btn-print { background-color: #007aff; } .btn-clear { background-color: #ff3b30; } .btn-share { background-color: #5856d6; }
+         
+        .floating-action-panel { position: fixed; bottom: 0; left: 0; right: 0; background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(15px); padding: 30px; border-top: 1px solid #c6c6c8; z-index: 9999; display: flex; gap: 10px; justify-content: center; }
+        .action-btn { flex: 1; border: none; border-radius: 28px; padding: 30px 5px; font-weight: 700; font-size: 40px; color: white; cursor: pointer; text-decoration: none; text-align: center; display: flex; align-items: center; justify-content: center; white-space: nowrap; }
+        .btn-print { background-color: #007aff; }
+        .btn-clear { background-color: #ff3b30; }
+        .btn-back { background-color: #8e8e93; }
         @media print { .floating-action-panel { display: none !important; } }
     </style>
 </head>
@@ -74,10 +72,10 @@
     </table>
 
     <div class="floating-action-panel">
-        <button type="button" class="action-btn" style="background: #8e8e93" onclick="window.history.back()">Back</button>
+        <button type="button" class="action-btn btn-back" onclick="window.location.href='index.html'">Back</button>
         <button type="button" class="action-btn btn-clear" onclick="clearAllData()">Clear</button>
         <button type="button" class="action-btn btn-print" onclick="window.print()">Print</button>
-        <button type="button" class="action-btn btn-share" onclick="shareForm()">Share</button>
+        
     </div>
 
     <script>
@@ -128,10 +126,7 @@
             }
         }
 
-        function shareForm() {
-            if (navigator.share) navigator.share({title: 'Daily Journal', url: window.location.href}).catch(console.error);
-            else alert("Sharing not supported.");
-        }
+        
     </script>
 </body>
 </html>
