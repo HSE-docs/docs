@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculators</title>
+    <style>
+        body { font-family: sans-serif; padding: 20px; max-width: 500px; margin: auto; padding-bottom: 120px; }
+        h1 { text-align: center; }
+        .calc-box { border: 1px solid #ccc; padding: 15px; margin-bottom: 20px; border-radius: 8px; background: #f9f9f9; }
+        label { display: block; margin-bottom: 5px; font-weight: bold; }
+        input { width: 100%; padding: 8px; margin-bottom: 10px; box-sizing: border-box; }
+        .result { font-weight: bold; color: #007aff; font-size: 1.2em; }
+
+                .floating-action-panel { position: fixed; bottom: 0; left: 0; right: 0; background: rgba(255, 255, 255, 0.9); backdrop-filter: blur(15px); padding: 10px; border-top: 1px solid #c6c6c8; z-index: 9999; display: flex; gap: 8px; }
+        .action-btn { flex: 1; border: none; border-radius: 8px; padding: 12px; font-weight: 600; font-size: 13px; color: white; cursor: pointer; }
+        .btn-print { background-color: #007aff; }
+        .btn-clear { background-color: #ff3b30; }
+        .btn-back { background-color: #8e8e93; }
+
+        @media print {
+            .floating-action-panel { display: none !important; }
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Calculators</h1>
+
+    <div class="calc-box">
+        <label>Speed Required (m/min)</label>
+        <input type="number" id="flowRate" placeholder="Flow Rate (L/min)" oninput="calcSpeed()">
+        <input type="number" id="appRateSpeed" placeholder="App Rate (L/m2)" oninput="calcSpeed()">
+        <input type="number" id="widthFt" placeholder="Width (ft)" oninput="calcSpeed()">
+        <div class="result" id="resSpeedReq">Required Speed: 0 m/min</div>
+    </div>
+
+    <div class="calc-box">
+        <label>Liters Needed</label>
+        <input type="number" id="len" placeholder="Length (m)" oninput="calcLiters()">
+        <input type="number" id="wid" placeholder="Width (m)" oninput="calcLiters()">
+        <input type="number" id="rate" placeholder="Rate (L/m2)" oninput="calcLiters()">
+        <div class="result" id="resLiters">Total: 0 Liters</div>
+    </div>
+
+    <div class="calc-box">
+        <label>Feet to Meters</label>
+        <input type="number" id="ft" placeholder="Enter Feet" oninput="convertFeet()">
+        <div class="result" id="resFt">0 Meters</div>
+    </div>
+
+    <div class="calc-box">
+        <label>US Gallons to Liters</label>
+        <input type="number" id="gal" placeholder="Enter Gallons" oninput="convertGallons()">
+        <div class="result" id="resGal">0 Liters</div>
+    </div>
+
+    <div class="calc-box">
+        <label>Meters/Min to KM/H</label>
+        <input type="number" id="mpm" placeholder="Enter Meters/Min" oninput="convertSpeed()">
+        <div class="result" id="resSpeed">0 KM/H</div>
+    </div>
+
+    <div class="floating-action-panel">
+        <button type="button" class="action-btn btn-back" onclick="window.location.href='index.html'">Back</button>
+        <button type="button" class="action-btn btn-clear" onclick="clearCalculatorData()">Clear</button>
+        <button type="button" class="action-btn btn-print" onclick="window.print()">Print</button>
+    </div>
+
+    <script>
+        function calcSpeed() {
+            const flow = parseFloat(document.getElementById('flowRate').value) || 0;
+            const appRate = parseFloat(document.getElementById('appRateSpeed').value) || 0;
+            const widthFt = parseFloat(document.getElementById('widthFt').value) || 0;
+            const widthMeters = widthFt * 0.3048;
+            if (appRate > 0 && widthMeters > 0) {
+                const speed = flow / (appRate * widthMeters);
+                document.getElementById('resSpeedReq').innerText = "Required Speed: " + speed.toFixed(1) + " m/min";
+            } else {
+                document.getElementById('resSpeedReq').innerText = "Required Speed: 0 m/min";
+            }
+        }
+
+        function calcLiters() {
+            const len = parseFloat(document.getElementById('len').value) || 0;
+            const wid = parseFloat(document.getElementById('wid').value) || 0;
+            const rate = parseFloat(document.getElementById('rate').value) || 0;
+            document.getElementById('resLiters').innerText = "Total: " + Math.floor(len * wid * rate) + " Liters";
+        }
+
+        function convertFeet() {
+            const ft = parseFloat(document.getElementById('ft').value) || 0;
+            document.getElementById('resFt').innerText = (ft * 0.3048).toFixed(2) + " Meters";
+        }
+
+        function convertGallons() {
+            const gal = parseFloat(document.getElementById('gal').value) || 0;
+            document.getElementById('resGal').innerText = (gal * 3.78541).toFixed(2) + " Liters";
+        }
+
+        function convertSpeed() {
+            const mpm = parseFloat(document.getElementById('mpm').value) || 0;
+            document.getElementById('resSpeed').innerText = ((mpm * 60) / 1000).toFixed(2) + " KM/H";
+        }
+
+        function clearCalculatorData() {
+            if(confirm("Are you sure you want to clear all calculator fields?")) {
+                document.querySelectorAll('input').forEach(el => el.value = '');
+            }
+        }
+    </script>
+</body>
+</html>
