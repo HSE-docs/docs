@@ -8,11 +8,32 @@
         h3 { font-size: 11pt; margin: 8px 0 2px 0; border-bottom: 1px solid #000; padding-bottom: 1px; }
         .row { display: flex; align-items: baseline; margin-bottom: 2px; }
         .row label { font-weight: bold; margin-right: 6px; font-size: 10pt; white-space: nowrap; }
-        .row input { flex-grow: 1; border: none; border-bottom: 1px solid #000; padding: 1px; font-size: 11pt; }
+        
+        /* Updated Input Styling */
+        .row input { 
+            flex-grow: 1; 
+            border: none; 
+            border-bottom: 1px solid #000; 
+            padding: 1px 0 1px 5px; 
+            font-size: 11pt; 
+            background: transparent; 
+            text-align: left; 
+            color: #000;
+        }
+
+        /* Fixed Date Input to override browser defaults */
+        input[type="date"] { 
+            background: transparent !important; 
+            text-align: left !important; 
+            color: #000 !important;
+            appearance: none;
+            -webkit-appearance: none;
+        }
+        
         .start-stop-row { display: flex; align-items: baseline; justify-content: space-between; margin-bottom: 4px; }
         .start-stop-right { display: flex; align-items: baseline; gap: 15px; }
         .start-stop-right .input-wrapper { display: flex; align-items: baseline; }
-        .start-stop-right input { width: 180px; border: none; border-bottom: 1px solid #000; padding: 1px; font-size: 11pt; }
+        .start-stop-right input { width: 180px; border: none; border-bottom: 1px solid #000; padding: 1px; font-size: 11pt; background: transparent; }
         table { width: 100%; border-collapse: collapse; margin: 5px 0; }
         th, td { border: 1px solid #000; padding: 2px; text-align: center; font-size: 10pt; }
         th { background-color: #f2f2f2; }
@@ -116,12 +137,10 @@
     </div>
 
     <script>
-        // Load data on start
         document.querySelectorAll('input').forEach(el => {
             if (el.id) el.value = localStorage.getItem(el.id) || '';
         });
 
-        // Save data on change
         document.querySelectorAll('input').forEach(el => {
             el.addEventListener('input', () => {
                 if (el.id) localStorage.setItem(el.id, el.value);
