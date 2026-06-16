@@ -4,63 +4,56 @@
     <meta charset="UTF-8">
     <title>Daily Journal</title>
     <style>
-        body { font-family: sans-serif; margin: 20px; padding-bottom: 80px; color: black; }
+        /* Force Landscape and tight margins for printing */
+        @page { size: landscape; margin: 5mm; }
         
-        .name-row { display: flex; align-items: baseline; margin-bottom: 15px; }
-        .name-row label { font-weight: bold; margin-right: 6px; font-size: 10pt; white-space: nowrap; }
+        body { font-family: sans-serif; margin: 10px; color: black; }
+        
+        .name-row { display: flex; align-items: baseline; margin-bottom: 5px; }
+        .name-row label { font-weight: bold; margin-right: 6px; font-size: 9pt; white-space: nowrap; }
         .name-row input { 
             flex-grow: 1; border: none; border-bottom: 1px solid #000; 
-            padding: 1px 0 1px 5px; font-size: 11pt; background: transparent; 
+            padding: 1px 0 1px 5px; font-size: 9pt; background: transparent; 
             color: #000; font-family: sans-serif; 
         }
 
         table { 
-            width: 100%; border-collapse: collapse; margin-top: 20px; 
+            width: 100%; border-collapse: collapse; 
             table-layout: fixed; border: 1px solid #333; color: black; 
         }
-        td { border: 1px solid #333; padding: 0; height: 37.5px; vertical-align: top; }
+        td { border: 1px solid #333; padding: 0; height: 32px; vertical-align: top; }
         
         textarea { 
             width: 100%; height: 100%; border: none; 
-            padding: 2px; box-sizing: border-box; outline: none; 
-            font-size: 10px; font-weight: bold; color: black; 
+            padding: 1px; box-sizing: border-box; outline: none; 
+            font-size: 8px; font-weight: bold; color: black; 
             background-color: transparent; font-style: italic; 
             text-align: left; resize: none; overflow: hidden;
             font-family: sans-serif;
         }
 
-        /* Clean select styling with arrows removed */
         select { 
-            border: none; padding: 2px; font-size: 10px; 
+            border: none; padding: 0; font-size: 8px; 
             font-weight: bold; background-color: transparent;
             font-style: italic; cursor: pointer; color: black;
-            width: 50%;
-            -webkit-appearance: none;
-            -moz-appearance: none;
-            appearance: none;
-            background-image: none !important;
+            width: 48%; -webkit-appearance: none; appearance: none;
         }
-        select option { color: black; }
 
-        .date-cell-container { 
-            display: flex; align-items: center; justify-content: center; 
-            width: 100%; height: 100%; 
-        }
+        .date-cell-container { display: flex; align-items: center; justify-content: center; width: 100%; height: 100%; }
         
         th { 
             border: 1px solid #333; padding: 2px; background-color: transparent; 
-            text-align: center; font-size: 8px; height: auto; color: black; 
+            text-align: center; font-size: 8px; height: 20px; color: black; 
         }
-        .journal-cell { text-align: center; font-weight: bold; font-size: 10px; height: 18.75px; color: black; }
-        
+        .journal-cell { text-align: center; font-weight: bold; font-size: 9px; height: 18px; background: transparent; }
         .day-label { 
-            font-weight: bold; width: 107px; font-size: 10px; height: 46.875px; 
-            color: black; text-align: center; line-height: 46.875px;
+            font-weight: bold; width: 80px; font-size: 8px; height: 35px; 
+            color: black; text-align: center; line-height: 35px;
             vertical-align: middle; box-sizing: border-box;
         }
          
-        .floating-action-panel { position: fixed; bottom: 0; left: 0; right: 0; background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(15px); padding: 30px; border-top: 1px solid #c6c6c8; z-index: 9999; display: flex; gap: 10px; justify-content: center; }
-        .action-btn { flex: 1; border: none; border-radius: 28px; padding: 30px 5px; font-weight: 700; font-size: 40px; color: white; cursor: pointer; text-decoration: none; text-align: center; display: flex; align-items: center; justify-content: center; white-space: nowrap; }
+        .floating-action-panel { position: fixed; bottom: 0; left: 0; right: 0; background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(15px); padding: 20px; border-top: 1px solid #c6c6c8; z-index: 9999; display: flex; gap: 10px; justify-content: center; }
+        .action-btn { border: none; border-radius: 20px; padding: 15px 30px; font-weight: 700; font-size: 16px; color: white; cursor: pointer; }
         .btn-print { background-color: #007aff; }
         .btn-clear { background-color: #ff3b30; }
         .btn-back { background-color: #8e8e93; }
@@ -73,13 +66,13 @@
 
     <table>
         <colgroup>
-            <col style="width: 65px;"><col style="width: 80px;"><col style="width: 80px;"><col style="width: 80px;">
-            <col style="width: 80px;"><col style="width: 80px;"><col style="width: 76px;"><col style="width: auto;">
+            <col style="width: 60px;"><col style="width: 80px;"><col style="width: 70px;"><col style="width: 70px;">
+            <col style="width: 70px;"><col style="width: 70px;"><col style="width: 70px;"><col style="width: auto;">
         </colgroup>
         <thead>
             <tr>
-                <th>Date</th><th>Activity/Location</th><th>Planned Start Time</th><th>Planned Quantity</th>
-                <th>Actual Start Time</th><th>Actual End Time</th><th>Actual Quantity</th><th>Comments</th>
+                <th>Date</th><th>Activity/Location</th><th>Plan Start</th><th>Plan Qty</th>
+                <th>Actual Start</th><th>Actual End</th><th>Actual Qty</th><th>Comments</th>
             </tr>
         </thead>
         <tbody id="grid-body"></tbody>
