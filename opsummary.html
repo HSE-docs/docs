@@ -29,11 +29,16 @@
             font-family: sans-serif;
         }
 
+        /* Clean select styling with arrows removed */
         select { 
             border: none; padding: 2px; font-size: 10px; 
             font-weight: bold; background-color: transparent;
             font-style: italic; cursor: pointer; color: black;
-            width: 50%; /* Expanded width since slash is gone */
+            width: 50%;
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            appearance: none;
+            background-image: none !important;
         }
         select option { color: black; }
 
@@ -95,7 +100,6 @@
             for (let j = 0; j < 8; j++) {
                 let cell = document.createElement('td');
                 if (j === 0) {
-                    // Removed span with slash-separator
                     cell.innerHTML = `<div class="date-cell-container"><select id="r${i}m"><option value=""></option>${months.map(m=>`<option value="${m}">${m}</option>`).join('')}</select><select id="r${i}d"><option value=""></option>${Array.from({length:31}, (_,k)=>`<option value="${k+1}">${k+1}</option>`).join('')}</select></div>`;
                 } else {
                     cell.innerHTML = `<textarea class="cell-input" id="r${i}c${j}"></textarea>`;
