@@ -4,8 +4,11 @@
     <meta charset="UTF-8">
     <title>Daily Journal</title>
     <style>
-        /* Force Landscape and tight margins for printing */
-        @page { size: landscape; margin: 5mm; }
+        /* This is the standard command to force landscape mode */
+        @page { 
+            size: landscape; 
+            margin: 5mm; 
+        }
         
         body { font-family: sans-serif; margin: 10px; color: black; }
         
@@ -57,7 +60,10 @@
         .btn-print { background-color: #007aff; }
         .btn-clear { background-color: #ff3b30; }
         .btn-back { background-color: #8e8e93; }
-        @media print { .floating-action-panel { display: none !important; } }
+        
+        @media print { 
+            .floating-action-panel { display: none !important; } 
+        }
     </style>
 </head>
 <body>
