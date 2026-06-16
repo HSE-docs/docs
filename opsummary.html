@@ -5,6 +5,15 @@
     <title>Daily Journal</title>
     <style>
         body { font-family: sans-serif; margin: 20px; padding-bottom: 80px; color: black; }
+        
+        .name-row { display: flex; align-items: baseline; margin-bottom: 15px; }
+        .name-row label { font-weight: bold; margin-right: 6px; font-size: 10pt; white-space: nowrap; }
+        .name-row input { 
+            flex-grow: 1; border: none; border-bottom: 1px solid #000; 
+            padding: 1px 0 1px 5px; font-size: 11pt; background: transparent; 
+            color: #000; font-family: sans-serif; 
+        }
+
         table { 
             width: 100%; border-collapse: collapse; margin-top: 20px; 
             table-layout: fixed; border: 1px solid #333; color: black; 
@@ -20,11 +29,11 @@
             font-family: sans-serif;
         }
 
-        /* Dropdown styling with black text */
         select { 
             border: none; padding: 2px; font-size: 10px; 
             font-weight: bold; background-color: transparent;
-            font-style: italic; cursor: pointer; color: black; /* Explicitly black */
+            font-style: italic; cursor: pointer; color: black;
+            width: 50%; /* Expanded width since slash is gone */
         }
         select option { color: black; }
 
@@ -32,7 +41,6 @@
             display: flex; align-items: center; justify-content: center; 
             width: 100%; height: 100%; 
         }
-        .slash-separator { font-size: 10px; font-weight: bold; padding: 0 2px; color: black; }
         
         th { 
             border: 1px solid #333; padding: 2px; background-color: transparent; 
@@ -45,7 +53,6 @@
             color: black; text-align: center; line-height: 46.875px;
             vertical-align: middle; box-sizing: border-box;
         }
-
          
         .floating-action-panel { position: fixed; bottom: 0; left: 0; right: 0; background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(15px); padding: 30px; border-top: 1px solid #c6c6c8; z-index: 9999; display: flex; gap: 10px; justify-content: center; }
         .action-btn { flex: 1; border: none; border-radius: 28px; padding: 30px 5px; font-weight: 700; font-size: 40px; color: white; cursor: pointer; text-decoration: none; text-align: center; display: flex; align-items: center; justify-content: center; white-space: nowrap; }
@@ -57,6 +64,8 @@
 </head>
 <body>
     
+    <div class="name-row"><label>NAME:</label><input type="text" id="user-name"></div>
+
     <table>
         <colgroup>
             <col style="width: 65px;"><col style="width: 80px;"><col style="width: 80px;"><col style="width: 80px;">
@@ -75,7 +84,6 @@
         <button type="button" class="action-btn btn-back" onclick="window.location.href='index.html'">Back</button>
         <button type="button" class="action-btn btn-clear" onclick="clearAllData()">Clear</button>
         <button type="button" class="action-btn btn-print" onclick="window.print()">Print</button>
-        
     </div>
 
     <script>
@@ -87,7 +95,8 @@
             for (let j = 0; j < 8; j++) {
                 let cell = document.createElement('td');
                 if (j === 0) {
-                    cell.innerHTML = `<div class="date-cell-container"><select id="r${i}m"><option value="" disabled selected>MM</option>${months.map(m=>`<option value="${m}">${m}</option>`).join('')}</select><span class="slash-separator">/</span><select id="r${i}d"><option value="" disabled selected>DD</option>${Array.from({length:31}, (_,k)=>`<option value="${k+1}">${k+1}</option>`).join('')}</select></div>`;
+                    // Removed span with slash-separator
+                    cell.innerHTML = `<div class="date-cell-container"><select id="r${i}m"><option value=""></option>${months.map(m=>`<option value="${m}">${m}</option>`).join('')}</select><select id="r${i}d"><option value=""></option>${Array.from({length:31}, (_,k)=>`<option value="${k+1}">${k+1}</option>`).join('')}</select></div>`;
                 } else {
                     cell.innerHTML = `<textarea class="cell-input" id="r${i}c${j}"></textarea>`;
                 }
@@ -104,7 +113,7 @@
 
         function saveData() {
             let data = {};
-            document.querySelectorAll('textarea, select').forEach(el => data[el.id] = el.value);
+            document.querySelectorAll('textarea, select, input').forEach(el => data[el.id] = el.value);
             localStorage.setItem('journalData', JSON.stringify(data));
         }
         document.addEventListener('input', saveData);
@@ -122,11 +131,9 @@
         function clearAllData() {
             if(confirm("Clear all data?")) {
                 localStorage.removeItem('journalData');
-                document.querySelectorAll('textarea, select').forEach(el => el.value = '');
+                location.reload();
             }
         }
-
-        
     </script>
 </body>
 </html>
