@@ -8,6 +8,9 @@
         .faded { color: #999 !important; }
         .normal { color: #000 !important; }
 
+        #month, #day, #year, #weather { -webkit-appearance: none; -moz-appearance: none; appearance: none; border: none; background: transparent; cursor: pointer; }
+        #month, #day, #year { width: 40px; }
+
         .header-top { border-bottom: 1px solid black; padding: 20px 0 10px 0; margin-bottom: 0px; position: relative; text-align: center; }
         .header-logo { position: absolute; left: 0; top: 20px; width: 90px; height: 100px; }
         .company-name { font-size: 16pt; font-weight: 800; margin-bottom: 1px; }
@@ -23,7 +26,13 @@
         .label-text { font-weight: bold; margin-right: 5px; white-space: nowrap; font-size: 9pt; }
         .input-wrapper { flex-grow: 1; display: flex; align-items: center; }
         
+        .right-col .input-wrapper { width: 100%; }
+        .right-col input { width: 100%; display: block; border: none; }
+
         input, select { color: #000000 !important; border: none; background: transparent; padding: 0px 2px; font-family: inherit; outline: none; cursor: pointer; }
+
+        /* FULL WIDTH INPUTS FOR DATA TABLES */
+        .data-table input { width: 100%; box-sizing: border-box; display: block; }
 
         .footer-title { text-align: center; font-weight: bold; font-size: 14pt; padding-top: 5px; margin-top: 5px; }
         table { width: 100%; border-collapse: collapse; margin-bottom: 0px; table-layout: fixed; }
@@ -31,7 +40,6 @@
         th { border: 1px solid black; padding: 2px; height: 9px; vertical-align: middle; text-align: center; font-weight: bold; font-size: 8pt; border-top: none; }
         
         .remarks-col-header { text-align: center !important; }
-
         .sta-cell { border: 1px solid black !important; border-right: none !important; position: relative; }
         .to-cell { border: 1px solid black !important; border-left: none !important; position: relative; }
         .label-sta, .label-to { position: absolute; bottom: 0; left: 2px; font-size: 6pt; color: #888; pointer-events: none; z-index: 0; }
@@ -85,16 +93,14 @@
             <div class="form-row">
                 <div class="label-text">Date:</div>
                 <div style="display: flex; align-items: center; gap: 2px;">
-                    <select id="month" class="faded" onchange="this.className=this.value?'normal':'faded'">
-                        <option value="">MM</option><option value="Jan">Jan</option><option value="Feb">Feb</option><option value="Mar">Mar</option><option value="Apr">Apr</option><option value="May">May</option><option value="Jun">Jun</option><option value="Jul">Jul</option><option value="Aug">Aug</option><option value="Sep">Sep</option><option value="Oct">Oct</option><option value="Nov">Nov</option><option value="Dec">Dec</option>
+                    <select id="month" class="normal">
+                        <option value="Jan">Jan</option><option value="Feb">Feb</option><option value="Mar">Mar</option><option value="Apr">Apr</option><option value="May">May</option><option value="Jun">Jun</option><option value="Jul">Jul</option><option value="Aug">Aug</option><option value="Sep">Sep</option><option value="Oct">Oct</option><option value="Nov">Nov</option><option value="Dec">Dec</option>
                     </select>
-                    <span>/</span>
-                    <select id="day" class="faded" onchange="this.className=this.value?'normal':'faded'">
-                        <option value="">DD</option><script>for(let i=1; i<=31; i++) document.write(`<option value="${i}">${i}</option>`);</script>
+                    <select id="day" class="normal">
+                        <script>for(let i=1; i<=31; i++) document.write(`<option value="${i}">${i}</option>`);</script>
                     </select>
-                    <span>/</span>
-                    <select id="year" class="faded" onchange="this.className=this.value?'normal':'faded'">
-                        <option value="">YYYY</option><script>for(let i=2026; i<=2030; i++) document.write(`<option value="${i}">${i}</option>`);</script>
+                    <select id="year" class="normal">
+                        <script>for(let i=2026; i<=2030; i++) document.write(`<option value="${i}">${i}</option>`);</script>
                     </select>
                 </div>
             </div>
@@ -108,8 +114,8 @@
             <div class="form-row"><div class="label-text">Contract #:</div><span class="input-wrapper"><input type="text"></span></div>
             <div class="form-row">
                 <div class="label-text">Weather:</div>
-                <select id="weather" class="faded" onchange="this.className=this.value?'normal':'faded'" style="width: 100%;">
-                    <option value="">Select Weather...</option>
+                <select id="weather" class="normal" style="width: 100%;">
+                    <option value=""></option>
                     <option value="Sunny">Sunny</option><option value="Cloudy">Cloudy</option>
                     <option value="Overcast">Overcast</option><option value="Light Rain">Light Rain</option>
                     <option value="Heavy Rain">Heavy Rain</option><option value="Snow">Snow</option>
@@ -126,7 +132,7 @@
         </div>
     </div>
 
-    <table>
+    <table class="data-table">
         <thead>
             <tr><th colspan="2" class="large-col">Length</th><th class="med-small-col">Meters</th><th class="med-small-col">Width</th><th class="med-small-col">M2</th><th class="very-small-col">Depth</th><th class="med-small-col">Mainlane</th><th class="very-small-col">Ramp</th><th class="large-col">Comments</th></tr>
         </thead>
@@ -139,11 +145,11 @@
             <tr class="total-row"><td colspan="4" class="total-label">Total M2:</td><td><input type="text" id="totalM2"></td><td></td><td></td><td></td><td><input type="text" id="totalLiters"></td></tr>
         </tbody>
     </table>
-    <table>
+    <table class="data-table">
         <thead><tr><th class="large-col">Employee Name</th><th class="med-small-col">Working</th><th class="med-small-col">Standby</th><th class="med-small-col">Travel</th><th class="very-small-col">Total</th><th class="merged-remarks-col remarks-col-header">Remarks</th></tr></thead>
         <tbody><script>for(let i=0; i<8; i++) { document.write(`<tr><td><input type="text"></td><td><input type="text"></td><td><input type="text"></td><td><input type="text"></td><td><input type="text"></td><td><input type="text"></td></tr>`); }</script></tbody>
     </table>
-    <table>
+    <table class="data-table">
         <thead>
             <tr>
                 <th class="large-col">
