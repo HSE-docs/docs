@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head><title>Admin - Excel Manager</title></head>
+<body>
+    <h2>Control Panel</h2>
+    <input type="password" id="pass" placeholder="Enter Password">
+    <button onclick="checkPass()">Unlock</button>
+
+    <div id="controls" style="display:none;">
+        <input type="file" id="excel-file" accept=".xlsx, .xls, .csv" />
+        <button onclick="clearData()" style="color:red;">Clear Data</button>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+    <script>
+        const PASSWORD = "7798";
+        let db;
+
+        // Initialize Database
+        const request = indexedDB.open("ExcelDatabase", 1);
+        request.onupgradeneeded = e => e.target.result.createObjectStore("sheets", {keyPath: "id"});
+        request.onsuccess = e => db = e.target.result;
+
+        function checkPass() {
+            if(document.getElementById('pass').value === PASSWORD) {
+                document.getElementById('controls').style.display = 'block';
+            } else { alert("Wrong password"); }
+        }
+
+        document.getElementById('excel-file').addEventListener('change', function(e) {
+            const reader = new FileReader();
+            reader.onload = function(event) {
+                const workbook = XLSX.read(new Uint8Array(event.target.result), {type: 'array'});
+                const tx = db.transaction("sheets", "readwrite");
+                tx.objectStore("sheets").put({id: "data", content: JSON.stringify(workbook)});
+                alert("Data saved permanently!");
+            };
+            reader.readAsArrayBuffer(e.target.files[0]);
+        });
+
+        function clearData() {
+            const tx = db.transaction("sheets", "readwrite");
+            tx.objectStore("sheets").delete("data");
+            alert("Data cleared.");
+        }
+    </script>
+</body>
+</html>
